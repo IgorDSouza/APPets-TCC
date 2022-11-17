@@ -1,0 +1,136 @@
+*{
+    border: 0;
+    outline: 0;
+    margin: 0;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+body{
+    color:rgb(10, 85, 7);
+    background-image: url(/imgHome/bg3-3.jpg);
+    
+}
+.navbar{
+    font-weight: bolder;
+    background-color: rgba(0, 0, 0, 0.678);
+}
+a.nav-link{
+    transition: 0.8s;
+    color: rgb(45, 206, 80);
+}
+a.nav-link:hover{ 
+        background-color: #1a1b1a73 !important;
+        color: white !important;
+        border-radius: 10px;
+}
+.page-home{
+    display: flex;
+    flex-direction: column;
+    align-items:center ;
+}
+header{
+    padding-bottom: 20px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    height: 100%;
+       background-image: url(/imgHome/bg3-2.jpg);
+       background-repeat: no-repeat;
+       background-position: center;
+       background-size: cover;
+    padding-top: 40px;  
+}
+.jumbotron{
+    width: fit-content;
+    color: greenyellow;
+  display: flex;
+
+}
+.height-jumbotron{
+    padding: 1rem;
+    height: 100%;
+    
+}
+#imgJumbo{
+    width: 30vw;
+    margin-bottom: 25px;
+}
+.principaisOc{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    background-color: #188a1d;
+    width: 100%;
+    margin: 40px 0px;
+}
+.titMaps{
+    background-color: #188a1d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.ongs{
+    background-color: #188a1d;
+    margin-top: 55px;
+    margin-bottom:30px;
+    padding-bottom: 30px;
+}
+.ongicons img{
+    width: 16vw;
+    border-radius: 200px;
+}
+.ongicons{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.ongs a{
+    text-align: center;
+    text-decoration: none;
+    color: rgb(5, 5, 5) !important;
+}
+footer{
+    font-weight: bolder;
+
+}
+main{
+    margin-top: 20px;
+    width: 100%;
+}
+@media (min-width:200px) and (max-width:400px) {
+    div.container-fluid{
+        justify-content:unset !important;
+    }
+    #imgJumbo{
+        width: 95vw;
+    }
+    .height-jumbotron{
+        padding:0px;
+    }
+}
+@media (min-width:400px) and (max-width:460px) {
+    div.container-fluid{
+        justify-content:start !important;
+    }
+    #imgJumbo{
+        width: 70vw;
+    }
+}
+@media (min-width:461px) {
+    div.container-fluid{
+        justify-content:space-around !important;
+    }
+}
+@media (min-width:461px) and (max-width:650px) {
+    div.container-fluid{
+        justify-content:space-around !important;
+    }
+    #imgJumbo{
+        width: 70vw;
+    }
+}
+
