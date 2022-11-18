@@ -35,15 +35,20 @@ class CadastroController extends Controller
 
     
     public function login(Request $request){   
-        $usuario = $request->usuario;
-        $senha = $request->senha;
-
-        $usuarios = DB::table('usuarios')->where('login',$usuario)->value('login');
-
-        echo '<script> window.alert('.$usuarios.') </script>' ;
+        $usuarioForm = $request->usuario;
+        $senhaForm = $request->senha;
+        $senhaForm = md5($senhaForm);
+        $usuario = DB::select('select * from usuarios where login = :usuario',['usuario'=>$usuarioForm]);
+        $senha = DB::select('select * from usuarios where senha = :senha',['senha'=>$senhaForm]);
         
-     
-         
+       
+        if($usuario[0]->login == $usuarioForm && $usuario[0]->senha == $senha ){
+            echo "<script> window.alert('logado') </script>";
+        }
+         else{
+            echo "<script> window.alert('erro') </script>";
+
+         }
         return view('site.home');
     }
 

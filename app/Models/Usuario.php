@@ -22,4 +22,5 @@ class Usuario extends Model
     protected $hidden = [
         'senha'
     ];
+    protected $table='usuarios';
 }
