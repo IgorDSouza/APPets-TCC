@@ -38,18 +38,13 @@ class CadastroController extends Controller
         $usuarioForm = $request->usuario;
         $senhaForm = $request->senha;
         $senhaForm = md5($senhaForm);
-        $usuario = DB::select('select * from usuarios where login = :usuario',['usuario'=>$usuarioForm]);
-        $senha = DB::select('select * from usuarios where senha = :senha',['senha'=>$senhaForm]);
+        $validacao = DB::table('usuarios')->where('login', $usuarioForm )->where('senha',$senhaForm)->first();
         
-       
-        if($usuario[0]->login == $usuarioForm && $usuario[0]->senha == $senha ){
-            echo "<script> window.alert('logado') </script>";
-        }
-         else{
-            echo "<script> window.alert('erro') </script>";
+        return view('site.home',['validacao' => $validacao]);
+    }
 
-         }
-        return view('site.home');
+    public function tutor(){
+        return view('site.tutor');
     }
 
 }

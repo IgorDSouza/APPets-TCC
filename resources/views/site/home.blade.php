@@ -39,9 +39,9 @@
                     <a class="nav-link " href="#ongs">ONGs</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Iniciar sessão</a>
+                    <a class="nav-link" id='loginNav' data-bs-toggle="modal" href="#exampleModalToggle" role="button">Iniciar sessão</a>
                   </li>
-                  <li class="nav-item linkTutor" >
+                  <li id="tutorNav" class="nav-item"  >
                     <a class="nav-link" href="/tutor">Area do Tutor</a>
                   </li>
                 </ul>
@@ -208,5 +208,16 @@
               </ul>
             </footer>
       </div> 
+
+     @isset($validacao) 
+     @if($validacao != null  )                  
+    <script> document.getElementById("loginNav").style.display = "none";</script>
+    <script> document.getElementById("tutorNav").style.display = "block";</script>
+
+
+      @endif
+      @endisset
+     
+
 </body>
 </html>

@@ -21,6 +21,10 @@ Route::get('/error', [CadastroController::class, 'index'])->name('site.erro');
 Route::post('/store', [CadastroController::class, 'storeTutor']);
 Route::post('/login', [CadastroController::class, 'login']);
 
+Route::get('/tutor', [CadastroController::class, 'tutor'])->name('site.tutor');
+
+
+
 
 
 
