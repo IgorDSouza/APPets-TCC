@@ -1,28 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+@extends('layout.default')
+@push('links')
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../wwwroot/css/fonts.css">
-    <link rel="stylesheet" href="../wwwroot/css/spacing.css">
-    <link rel="stylesheet" href="../wwwroot/css/colors.css">
-    <link rel="stylesheet" href="../wwwroot/css/login.css">
-    <link rel="stylesheet" href="../wwwroot/css/cardsUsuario.css">
-    <link rel="stylesheet" href="../wwwroot/css/usuario.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/spacing.css">
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/cardsUsuario.css">
+    <link rel="stylesheet" href="css/usuario.css">
      <!--bootstrap -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <title>Area Tutor</title>
-</head>
-<body id="home">
+@endpush
+@section('content')
     <div style="backdrop-filter:brightness(0.8)">
 
     <nav class="navbar navbar-expand-lg sticky-top "> 
         <div class="container-fluid">
           <a class="navbar-brand" href="home.html" style="color: rgb(45, 206, 80);
-          ;"> <img style="width: 50px;" src="../wwwroot/img/imgHome/iconLogin.png" alt="icone appets"> Appets</a>
+          ;"> <img style="width: 50px;" src="imgHome/iconLogin.png" alt="icone appets"> Appets</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -53,32 +51,21 @@
     <div class="tutorInfo" >
         <img class="circleImg" src="../wwwroot/img/imgUsuario/tutor.jpg" alt="IMAGEM TUTOR">
         <div class="tutorTitle">         
-            <H1 >Ola "nometutor"!</H1>
+            <H1 >Ola {{$tutor->login}} </H1>
             <h2>Como estão nossos 'aumigos' hoje?</h2>
         </div>
    </div>
 
    <div class="pets" id="pets">
     <section class="cards">
-          
+    @foreach($pets as $pet)
         <div class="card">
        
            <a><div class="imgCard"><img src="../wwwroot/img/imgUsuario/pet1.jpg"  alt="Imagem de capa do card" > </div> 
-           Godofredo </a>
+          {{$pet->nome}}</a>
     
         </div>
-        <div class="card">
-       
-            <a><div class="imgCard"><img src="../wwwroot/img/imgUsuario/pet1.jpg"  alt="Imagem de capa do card" > </div> 
-            Godofredo </a>
-     
-         </div>
-         <div class="card">
-       
-            <a><div class="imgCard"><img src="../wwwroot/img/imgUsuario/pet1.jpg"  alt="Imagem de capa do card" > </div> 
-            Godofredo </a>
-     
-         </div>
+      @endforeach
    </div>
     <div id = 'agenda' class="agendaTitle"><h1>Agenda</h1></div>
    <div class="d-flex justify-content-center">   
@@ -106,5 +93,4 @@
 
 </div>
 </div> 
-</body>
-</html>
+@endcontent

@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APPets</title>
+@extends('layout.default')
+@push('links')
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/spacing.css">
@@ -14,8 +9,8 @@
   <!--bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</head>
-<body id='home'>
+@endpush
+@section('content')
           <nav class="navbar navbar-expand-lg sticky-top "> 
             <div class="container-fluid">
               <a class="navbar-brand" href="home.html" style="color: rgb(45, 206, 80);
@@ -42,7 +37,7 @@
                     <a class="nav-link" id='loginNav' data-bs-toggle="modal" href="#exampleModalToggle" role="button">Iniciar sessão</a>
                   </li>
                   <li id="tutorNav" class="nav-item"  >
-                    <a class="nav-link" href="/tutor">Area do Tutor</a>
+                    <a class="nav-link" @isset($validacao) href="{{route('site.tutor', $validacao->id  )}}" @endisset >Area do Tutor</a>
                   </li>
                 </ul>
                 <a style="width: 121.797px;"> </a>
@@ -208,6 +203,9 @@
               </ul>
             </footer>
       </div> 
+@endsection
+
+@push('scripts')
 
      @isset($validacao) 
      @if($validacao != null  )                  
@@ -217,7 +215,7 @@
 
       @endif
       @endisset
-     
+@endpush     
 
 </body>
 </html>

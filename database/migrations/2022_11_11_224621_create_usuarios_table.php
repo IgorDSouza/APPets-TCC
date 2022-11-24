@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome',80)->nullable();
             $table->string('login',30);
-            $table->string('senha',100);
+            $table->string('senha');
             $table->string('email',30);
             $table->string('pais',30)->nullable();
             $table->string('uf',2)->nullable();

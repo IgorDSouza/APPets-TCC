@@ -39,12 +39,18 @@ class CadastroController extends Controller
         $senhaForm = $request->senha;
         $senhaForm = md5($senhaForm);
         $validacao = DB::table('usuarios')->where('login', $usuarioForm )->where('senha',$senhaForm)->first();
-        
-        return view('site.home',['validacao' => $validacao]);
+      
+        return view('site.home',['validacao' => $validacao, 'id'=> $id]);
     }
 
-    public function tutor(){
-        return view('site.tutor');
+    public function tutor($id){
+        $tutor=Usuario::find($id);
+        $pets = DB::table('pet')
+        ->join('usuarios', 'pet.tutor_id', '=' , 'usuarios.id')
+        ->select('pet.*')->get();
+        
+
+        return view('site.tutor',['tutor'=>$tutor,'pets'=>$pets]);
     }
 
 }
