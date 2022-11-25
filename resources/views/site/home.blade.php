@@ -37,7 +37,7 @@
                     <a class="nav-link" id='loginNav' data-bs-toggle="modal" href="#exampleModalToggle" role="button">Iniciar sessão</a>
                   </li>
                   <li id="tutorNav" class="nav-item"  >
-                    <a class="nav-link" @isset($validacao) href="{{route('site.tutor', $validacao->id  )}}" @endisset >Area do Tutor</a>
+                    <a class="nav-link"  href="{{route('site.tutor',1)}}" >Area do Tutor</a>
                   </li>
                 </ul>
                 <a style="width: 121.797px;"> </a>
@@ -205,17 +205,7 @@
       </div> 
 @endsection
 
-@push('scripts')
-
-     @isset($validacao) 
-     @if($validacao != null  )                  
-    <script> document.getElementById("loginNav").style.display = "none";</script>
-    <script> document.getElementById("tutorNav").style.display = "block";</script>
-
-
-      @endif
-      @endisset
-@endpush     
+   
 
 </body>
 </html>

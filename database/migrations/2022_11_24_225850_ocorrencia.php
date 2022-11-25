@@ -13,17 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('remedio', function (Blueprint $table) {
+        Schema::create('ocorrencia', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('animal_id')->references('id')->on('pet')->contrained()->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->string('nome',80);
-            $table->string('periodo',80);
-            $table->integer('dosagem');
-
-
+            $table->foreignId('usuario_id')->references('id')->on('usuarios')->contrained()->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->string('tipo_ocorrencia');
+            $table->string('conteudo_solucao');
+            $table->string('titulo_ocorrencia');
             $table->timestamps();
-        });
-    }
+        });    }
 
     /**
      * Reverse the migrations.
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('remedio');
+        Schema::dropIfExists('ocorrencia');
     }
 };

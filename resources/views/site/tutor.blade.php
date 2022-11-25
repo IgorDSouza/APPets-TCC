@@ -28,7 +28,7 @@
           " id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#home">Home</a>
+                <a class="nav-link" aria-current="page" href="{{route('site.home')}}">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#pets">Pets</a>
@@ -36,11 +36,11 @@
               <li class="nav-item">
                 <a class="nav-link " href="#agenda">Agenda</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Iniciar sessão</a>
-              </li>
               <li class="nav-item linkTutor" >
                 <a class="nav-link">Area do Tutor</a>
+              </li>
+              <li class="nav-item " >
+                <a class="nav-link" href="{{route('site.logout')}}">Sair</a>
               </li>
             </ul>
             <a style="width: 121.797px;"> </a>
@@ -51,14 +51,17 @@
     <div class="tutorInfo" >
         <img class="circleImg" src="../wwwroot/img/imgUsuario/tutor.jpg" alt="IMAGEM TUTOR">
         <div class="tutorTitle">         
-            <H1 >Ola {{$tutor->login}} </H1>
+            <H1 >Ola {{session('tutor')}} </H1>
             <h2>Como estão nossos 'aumigos' hoje?</h2>
         </div>
    </div>
 
    <div class="pets" id="pets">
     <section class="cards">
-    @foreach($pets as $pet)
+      @isset($pets)
+        
+        @if($pets)
+        @foreach($pets as $pet)
         <div class="card">
        
            <a><div class="imgCard"><img src="../wwwroot/img/imgUsuario/pet1.jpg"  alt="Imagem de capa do card" > </div> 
@@ -66,7 +69,29 @@
     
         </div>
       @endforeach
-   </div>
+        @endif
+      @endisset
+  
+      
+      <form method="post" action="{{route('site.storePet', session('id')  )}}">
+                  @csrf
+                  <label for="usuario"> Nome</label>
+                      <input type="text" name="nome" required>
+                      <label for="dataNascto"> Data Nascimento</label>
+                      <input type="date" name="dataNascto">
+                      <label for="peso">Peso</label>
+                      <input type="text" name="peso">
+                      <label for="raca">Raça</label>
+                      <input type="text" name="raca" required>
+                      <label for="comprimento">comprimento</label>
+                      <input type="text" name="comprimento" >  
+                      <label for="altura">altura</label>
+                      <input type="text" name="altura" >                    
+                      <input type="submit" value="Cadastrar Pet" class="btn-primary p10lr" style="margin-bottom: 10px;">                      
+                  </form> 
+</div>
+                  
+
     <div id = 'agenda' class="agendaTitle"><h1>Agenda</h1></div>
    <div class="d-flex justify-content-center">   
 
@@ -93,4 +118,4 @@
 
 </div>
 </div> 
-@endcontent
+@endsection

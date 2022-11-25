@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Models\Pet;
 use Illuminate\Support\Facades\DB;
 
 class CadastroController extends Controller
 {
-    public function index(){       
+    public function index(Request $request){  
+        dd($request);
         return view('site.home');
     }
 
@@ -34,23 +36,47 @@ class CadastroController extends Controller
     }
 
     
-    public function login(Request $request){   
+    public function login(Request $request, Usuario $user){   
         $usuarioForm = $request->usuario;
         $senhaForm = $request->senha;
         $senhaForm = md5($senhaForm);
         $validacao = DB::table('usuarios')->where('login', $usuarioForm )->where('senha',$senhaForm)->first();
-      
-        return view('site.home',['validacao' => $validacao, 'id'=> $id]);
+
+        session(['tutor'=>$validacao->login]);
+        session(['id'=>$validacao->id]);
+              
+        return view('site.home',['user' => $validacao->id]);
     }
 
-    public function tutor($id){
-        $tutor=Usuario::find($id);
+    public function tutor(){
         $pets = DB::table('pet')
         ->join('usuarios', 'pet.tutor_id', '=' , 'usuarios.id')
         ->select('pet.*')->get();
-        
 
-        return view('site.tutor',['tutor'=>$tutor,'pets'=>$pets]);
+       
+
+        
+        return view('site.tutor',['pets'=>$pets]);
+    }
+
+    public function storePet($id,Request $request ){
+        $pet = new Pet;
+        $pet->tutor_id = $id;
+        $pet->nome = $request->nome;
+        $pet->idade = $request->dataNascto;
+        $pet->raca = $request->raca;
+        $pet->altura = $request->altura;
+        $pet->comprimento = $request->comprimento;
+        $pet->save();
+        return redirect()->route('site.tutor',session('id'));
+    }
+
+    public function logout(){
+        session_destroy();
+
+
+
+        return view('site.home');
     }
 
 }

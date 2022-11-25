@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('tutor_id')->references('id')->on('usuarios')->contrained()->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->string('nome',60);
+            $table->string('altura',60)->nullable();
+            $table->string('comprimento',60)->nullable();
             $table->string('raca',60);
-            $table->date('idade');
-            $table->string('peso',4);
-            $table->string('doenca',60);
+            $table->date('idade')->nullable();
+            $table->string('peso',10)->nullable();
             $table->timestamps();
         });
     }

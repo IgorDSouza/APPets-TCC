@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('remedio', function (Blueprint $table) {
+        Schema::create('comprimisso', function (Blueprint $table) {
             $table->id();
             $table->foreignId('animal_id')->references('id')->on('pet')->contrained()->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->string('nome',80);
-            $table->string('periodo',80);
-            $table->integer('dosagem');
-
-
+            $table->date('data');
+            $table->time('hora');
+            $table->string('nota')->nullable();
+            $table->string('compromisso');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('remedio');
+        Schema::dropIfExists('agenda');
     }
 };

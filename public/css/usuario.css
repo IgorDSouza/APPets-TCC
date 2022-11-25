@@ -63,7 +63,16 @@ a.nav-link:hover{
 .my-4 {
      margin-bottom: 0rem!important
 }
+form{
+    display: flex;
+    flex-direction: column;
+    width: 19rem;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 15px;
+    background-color:  #447e605c;
 
+}
 @media (max-width:295px) {
     .circleImg{
         width: 100px;

@@ -13,15 +13,24 @@ use App\Http\Controllers\CadastroController;
 |
 */
 
-Route::get('/', [CadastroController::class, 'index'])->name('site.home');
+Route::get('/{id?}', [CadastroController::class, 'index'])->name('site.home');
 
 Route::get('/error', [CadastroController::class, 'index'])->name('site.erro');
 
 
 Route::post('/store', [CadastroController::class, 'storeTutor']);
+
+Route::post('/storePet/{id}', [CadastroController::class, 'storePet'])->name('site.storePet');
+
+
+Route::get('/logout', [CadastroController::class,'logout'])->name('site.logout');
+
+
 Route::post('/login', [CadastroController::class, 'login']);
 
-Route::get('/{id}', [CadastroController::class, 'tutor'])->name('site.tutor');
+Route::get('/tutor/{id}', [CadastroController::class, 'tutor'])->name('site.tutor');
+
+
 
 
 
