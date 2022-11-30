@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class CadastroController extends Controller
 {
-    public function index(Request $request){  
-        dd($request);
+    public function index(){  
         return view('site.home');
+    }
+    public function conteudo(){  
+        return view('site.conteudo');
     }
 
 
@@ -45,23 +47,23 @@ class CadastroController extends Controller
         session(['tutor'=>$validacao->login]);
         session(['id'=>$validacao->id]);
               
-        return view('site.home',['user' => $validacao->id]);
+        return view('site.home');
     }
 
-    public function tutor(){
-        $pets = DB::table('pet')
-        ->join('usuarios', 'pet.tutor_id', '=' , 'usuarios.id')
-        ->select('pet.*')->get();
 
-       
+    public function tutor(){
+        
+        $pets = DB::table('pet')
+        ->join('usuarios', 'pet.tutor_id', '=' , 'usuarios.id')->where('usuarios.id',session('id'))
+        ->select('pet.*')->get();
 
         
         return view('site.tutor',['pets'=>$pets]);
     }
 
-    public function storePet($id,Request $request ){
+    public function storePet(Request $request ){
         $pet = new Pet;
-        $pet->tutor_id = $id;
+        $pet->tutor_id = session('id');
         $pet->nome = $request->nome;
         $pet->idade = $request->dataNascto;
         $pet->raca = $request->raca;
@@ -72,11 +74,11 @@ class CadastroController extends Controller
     }
 
     public function logout(){
-        session_destroy();
+        session()->flush();
 
 
 
-        return view('site.home');
+        return redirect()->route('site.home');
     }
 
 }

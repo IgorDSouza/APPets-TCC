@@ -7,7 +7,7 @@
 }
 body{
     color:rgb(10, 85, 7);
-    background-image: url(../img/imgHome/bg3-3.jpg);
+    background-image: url(../imgHome/bg3-3.jpg);
     
 }
 .navbar{
@@ -36,7 +36,7 @@ header{
     display: flex;
     align-items: center;
     height: 100%;
-       background-image: url(../img/imgHome/bg3-2.jpg);
+       background-image: url(../imgHome/bg3-2.jpg);
        background-repeat: no-repeat;
        background-position: center;
        background-size: cover;

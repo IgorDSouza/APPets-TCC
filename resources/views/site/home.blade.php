@@ -22,7 +22,7 @@
               " id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{route('site.home')}}">Home</a>
+                    <a class="nav-link" aria-current="page" href="{{route('site.home')}}">Inicio</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#ps">Primeiros Socorros</a>
@@ -37,7 +37,7 @@
                     <a class="nav-link" id='loginNav' data-bs-toggle="modal" href="#exampleModalToggle" role="button">Iniciar sessão</a>
                   </li>
                   <li id="tutorNav" class="nav-item"  >
-                    <a class="nav-link"  href="{{route('site.tutor',1)}}" >Area do Tutor</a>
+                    <a class="nav-link"  href="{{route('site.tutor',session('id') ) }}" >Area do Tutor</a>
                   </li>
                 </ul>
                 <a style="width: 121.797px;"> </a>
@@ -101,7 +101,7 @@
 
        </div>
       </section>   
-      <div class="d-flex justify-content-center"> <a  id="options" class ="btn-primary btn" href="conteudo.html">Todas as Opções</a></div>
+      <div class="d-flex justify-content-center"> <a  id="options" class ="btn-primary btn" href="/conteudo">Todas as Opções</a></div>
 
       
       <section id="maps">
@@ -205,7 +205,13 @@
       </div> 
 @endsection
 
-   
+@push('scripts')
+@if(session('tutor')!=null && session('tutor')!='' )                  
+<script> document.getElementById("loginNav").style.display = "none";</script>
+<script> document.getElementById("tutorNav").style.display = "block";</script>
 
+
+ @endif
+ @endpush
 </body>
 </html>

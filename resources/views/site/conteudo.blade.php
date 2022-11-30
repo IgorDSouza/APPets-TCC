@@ -17,8 +17,8 @@
 @section('content')
   <nav class="navbar navbar-expand-lg sticky-top "> 
     <div class="container-fluid">
-      <a class="navbar-brand" href="home.html" style="color: rgb(45, 206, 80);
-      ;"> <img style="width: 50px;" src="../wwwroot/img/imgHome/iconLogin.png" alt="icone appets"> Appets</a>
+      <a class="navbar-brand" href="/" style="color: rgb(45, 206, 80);
+      ;"> <img style="width: 50px;" src="imgHome/iconLogin.png" alt="icone appets"> Appets</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -26,7 +26,7 @@
       " id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#home">Home</a>
+            <a class="nav-link" aria-current="page" href="/">Inicio</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -48,12 +48,6 @@
 
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Iniciar sessão</a>
-          </li>
-          <li class="nav-item linkTutor" >
-            <a class="nav-link">Area do Tutor</a>
-          </li>
         </ul>
         <a style="width: 121.797px;"> </a>
       </div>
@@ -65,7 +59,7 @@
         
           <section class="jumbotron " id="#home">
             <div class=" height-jumbotron ">
-                  <img id="imgJumboCont" src="../wwwroot/img/imgConteudo/icon.png"  alt="" >
+                  <img id="imgJumboCont" src="imgConteudo/icon.png"  alt="" >
                     <div>
                       <h1>Ocorrências </h1>
                     </div>
@@ -77,129 +71,83 @@
              <div class="card">
 
               
-                <a data-bs-toggle="modal"  role="button"href="#Envenenamento" ><div class="imgCard"><img class="d-block m-l-r borda " src="../wwwroot/img/imgConteudo/envenenamento.png"  alt="Imagem de capa do card" > </div> 
+                <a data-bs-toggle="modal"  role="button"href="#Envenenamento" ><div class="imgCard"><img class="d-block m-l-r borda " src="imgConteudo/envenenamento.png"  alt="Imagem de capa do card" > </div> 
                 Envenenamento </a>
        
             
              </div>
              <div class="card">
               
-              <a data-bs-toggle="modal"  role="button" href="#Queda"> <div class="imgCard"><img class="d-block m-l-r borda" src="../wwwroot/img/imgConteudo/queda.png"  alt="Imagem de capa do card"></div>
+              <a data-bs-toggle="modal"  role="button" href="#Queda"> <div class="imgCard"><img class="d-block m-l-r borda" src="imgConteudo/queda.png"  alt="Imagem de capa do card"></div>
                 Queda</a>
        
        
              </div>
              <div class="card">
               
-              <a data-bs-toggle="modal"  role="button"href="#Briga"> <div class="imgCard"><img class="d-block m-l-r borda" src="../wwwroot/img/imgConteudo/briga.png"  alt="Imagem de capa do card"></div>
+              <a data-bs-toggle="modal"  role="button"href="#Briga"> <div class="imgCard"><img class="d-block m-l-r borda" src="imgConteudo/briga.png"  alt="Imagem de capa do card"></div>
                 Briga</a>
        
              </div>
              <div class="card">
               
-                <a data-bs-toggle="modal"  role="button"href="#Afogamento" ><div class="imgCard"> <img class="d-block m-l-r borda " src="../wwwroot/img/imgConteudo/afogamento.png"  alt="Imagem de capa do card" > </div>Afogamento</a>
+                <a data-bs-toggle="modal"  role="button"href="#Afogamento" ><div class="imgCard"> <img class="d-block m-l-r borda " src="imgConteudo/afogamento.png"  alt="Imagem de capa do card" > </div>Afogamento</a>
        
              </div>
              <div class="card">
               
-              <a data-bs-toggle="modal"  role="button"href="#Asfixia"><div class="imgCard"> <img class="d-block m-l-r borda" src="../wwwroot/img/imgConteudo/asfixia.png"  alt="Imagem de capa do card"></div>
+              <a data-bs-toggle="modal"  role="button"href="#Asfixia"><div class="imgCard"> <img class="d-block m-l-r borda" src="imgConteudo/asfixia.png"  alt="Imagem de capa do card"></div>
                 Asfixia</a>
              </div>
              <div class="card">
 
               
-              <a data-bs-toggle="modal"  role="button"href="#Atropelamento" ><div class="imgCard"><img class="d-block m-l-r borda " src="../wwwroot/img/imgConteudo/atropelamento.png"  alt="Imagem de capa do card" > </div> 
+              <a data-bs-toggle="modal"  role="button"href="#Atropelamento" ><div class="imgCard"><img class="d-block m-l-r borda " src="imgConteudo/atropelamento.png"  alt="Imagem de capa do card" > </div> 
               Atropelamento </a>
      
           
            </div>
            <div class="card">
             
-            <a data-bs-toggle="modal"  role="button"href="#Queimadura" > <div class="imgCard"><img class="d-block m-l-r borda" src="../wwwroot/img/imgConteudo/queimadura.png"  alt="Imagem de capa do card"></div>
+            <a data-bs-toggle="modal"  role="button"href="#Queimadura" > <div class="imgCard"><img class="d-block m-l-r borda" src="imgConteudo/queimadura.png"  alt="Imagem de capa do card"></div>
               Queimadura</a>
      
      
            </div>
            <div class="card">
             
-            <a data-bs-toggle="modal"  role="button"href="#Choque"> <div class="imgCard"><img class="d-block m-l-r borda" src="../wwwroot/img/imgConteudo/choque.png"  alt="Imagem de capa do card"></div>
+            <a data-bs-toggle="modal"  role="button"href="#Choque"> <div class="imgCard"><img class="d-block m-l-r borda" src="imgConteudo/choque.png"  alt="Imagem de capa do card"></div>
               Choque Elétrico</a>
      
            </div>
            <div class="card">
             
-              <a data-bs-toggle="modal"  role="button"href="#Vomito" ><div class="imgCard"> <img class="d-block m-l-r borda " src="../wwwroot/img/imgConteudo/diarreia.png"  alt="Imagem de capa do card" > </div>
+              <a data-bs-toggle="modal"  role="button"href="#Vomito" ><div class="imgCard"> <img class="d-block m-l-r borda " src="imgConteudo/diarreia.png"  alt="Imagem de capa do card" > </div>
                 Vômito e Diarreia</a>
      
            </div>
            <div class="card">
             
-            <a data-bs-toggle="modal"  role="button"href="#Picada"><div class="imgCard"> <img class="d-block m-l-r borda" src="../wwwroot/img/imgConteudo/picada.png"  alt="Imagem de capa do card"></div>
+            <a data-bs-toggle="modal"  role="button"href="#Picada"><div class="imgCard"> <img class="d-block m-l-r borda" src="imgConteudo/picada.png"  alt="Imagem de capa do card"></div>
               Picada de insetos</a>
               
            </div>
            <div class="card">
             
-            <a data-bs-toggle="modal"  role="button"href="#Intoxicação"><div class="imgCard"> <img class="d-block m-l-r borda" src="../wwwroot/img/imgConteudo/intoxicacaoExterna.png"  alt="Imagem de capa do card"></div>
+            <a data-bs-toggle="modal"  role="button"href="#Intoxicação"><div class="imgCard"> <img class="d-block m-l-r borda" src="imgConteudo/intoxicacaoExterna.png"  alt="Imagem de capa do card"></div>
               Intoxicação Externa</a>
               
            </div>
            <div class="card " >
             
-            <a data-bs-toggle="modal"  role="button"href="#Cortes"><div class="imgCard"> <img class="d-block m-l-r borda" src="../wwwroot/img/imgConteudo/cortes.png"  alt="Imagem de capa do card"></div>
+            <a data-bs-toggle="modal"  role="button"href="#Cortes"><div class="imgCard"> <img class="d-block m-l-r borda" src="imgConteudo/cortes.png"  alt="Imagem de capa do card"></div>
               Cortes Profundos</a>
               
            </div>
 
        </div>
       </section>
-      <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-body">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       
-                    <div id="form"> 
-                            <img src="../wwwroot/img/imgHome/iconLogin.png" alt ="icone appets">
-                        <form method="POST" action="home.php">
-                            <label for="usuario"> Usuário</label><br>
-                            <input type="text" name="usuario"><br>
-                            <label for="senha">Senha</label><br>
-                            <input type="password" name="senha"><br><br>
-                            <input type="submit" value="Login" class=" btn-primary p10lr">
-                            <input type="button" value="Cadastre-se" class="btn-primary p10lr" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">
-                        </form>
-                    </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-body">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      
-            <div id="form"> 
-                            <img src="../wwwroot/img/imgHome/iconLogin.png" alt ="icone appets">
-                        <form method="POST" action="home.php">
-                        <label for="usuario"> Email</label><br>
-                            <input type="email" name="email"><br>
-                            <label for="usuario"> Usuário</label><br>
-                            <input type="text" name="usuario"><br>
-                            <label for="senha">Senha</label><br>
-                            <input type="password" name="senha"><br>
-                            <label for="senha">Confirmação Senha</label><br>
-                            <input type="password" name="senha"><br><br>
-                            <input type="submit" value="Cadastrar-se" class="btn-primary p10lr">
-                            <input type="button" value="Voltar ao login" class=" btn-primary p10lr" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">
-                            
-                        </form>
-                    </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="modal fade" id="Envenenamento" aria-hidden="true" aria-labelledby="Envenenamento" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
@@ -413,5 +361,5 @@
             </div>
           </div>
         </div>
-      </div>   
+      </div> 
   @endsection

@@ -37,9 +37,6 @@
               <li class="nav-item">
                 <a class="nav-link " href="#agenda">Area Tutor</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Iniciar sessão</a>
-              </li>
               <li class="nav-item linkTutor" >
                 <a class="nav-link">Area do Pet</a>
               </li>

@@ -1,26 +1,26 @@
 @extends('layout.default')
 @push('links')
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/spacing.css">
-    <link rel="stylesheet" href="css/colors.css">
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/cardsUsuario.css">
-    <link rel="stylesheet" href="css/usuario.css">
+    <link rel="stylesheet" href="{{URL::asset('css/fonts.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/spacing.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/colors.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/login.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/cardsUsuario.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/usuario.css')}}">
      <!--bootstrap -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 @endpush
+
 @section('content')
     <div style="backdrop-filter:brightness(0.8)">
 
     <nav class="navbar navbar-expand-lg sticky-top "> 
         <div class="container-fluid">
-          <a class="navbar-brand" href="home.html" style="color: rgb(45, 206, 80);
-          ;"> <img style="width: 50px;" src="imgHome/iconLogin.png" alt="icone appets"> Appets</a>
+          <a class="navbar-brand" href='' style="color: rgb(45, 206, 80);
+          ;"> <img style="width: 50px;" src="{{URL::asset('imgHome/iconLogin.png')}}" alt="icone appets"> Appets</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -28,7 +28,7 @@
           " id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{route('site.home')}}">Home</a>
+                <a class="nav-link" aria-current="page" href="{{route('site.home')}}">Inicio</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#pets">Pets</a>
@@ -51,7 +51,7 @@
     <div class="tutorInfo" >
         <img class="circleImg" src="../wwwroot/img/imgUsuario/tutor.jpg" alt="IMAGEM TUTOR">
         <div class="tutorTitle">         
-            <H1 >Ola {{session('tutor')}} </H1>
+            <H1 >Ola {{session('tutor');}} </H1>
             <h2>Como estão nossos 'aumigos' hoje?</h2>
         </div>
    </div>
@@ -64,7 +64,7 @@
         @foreach($pets as $pet)
         <div class="card">
        
-           <a><div class="imgCard"><img src="../wwwroot/img/imgUsuario/pet1.jpg"  alt="Imagem de capa do card" > </div> 
+           <a><div class="imgCard"><img src="../wwwroot/img/imgUsuario/pet1.jpg"  alt="Imagem do pet" > </div> 
           {{$pet->nome}}</a>
     
         </div>
@@ -73,7 +73,7 @@
       @endisset
   
       
-      <form method="post" action="{{route('site.storePet', session('id')  )}}">
+      <form method="post" action="/storePet">
                   @csrf
                   <label for="usuario"> Nome</label>
                       <input type="text" name="nome" required>

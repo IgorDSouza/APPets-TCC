@@ -7,17 +7,11 @@
    @stack('links')
   </head>
   <body>
-    @session_start();
     @yield('content')
    
    
 
-@if(session('tutor')!=null )                  
-<script> document.getElementById("loginNav").style.display = "none";</script>
-<script> document.getElementById("tutorNav").style.display = "block";</script>
 
-
- @endif
   @stack('scripts');
   </body>
 </html>
