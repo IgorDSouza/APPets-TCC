@@ -42,7 +42,7 @@ a.nav-link:hover{
     font-size: clamp(20px,2.5vw, 30px);
 }
 .circleImg{
-    border-radius: 180px;
+    border-radius: 100%;
     width: 180px;
     border: 2px black solid;
 }

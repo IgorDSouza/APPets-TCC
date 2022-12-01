@@ -35,6 +35,34 @@ class CadastroController extends Controller
     }
 
     return view('site.home');
+
+    }
+
+    public function storeimg(Request $request){  
+        $usuarioid = session('id');
+
+        $usuario= Usuario::find($usuarioid);
+        
+        if($request->hasFile('foto') && $request->file('foto')->isValid()){
+
+            $requestImage= $request->foto;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extension;
+
+
+            $requestImage->move(public_path("imgUsuario/usuarios"),$imageName);
+            
+            $usuario->foto = $imageName;
+        }
+
+        $usuario->save();
+
+        session(['foto'=>$usuario->foto]);
+
+
+    return redirect()->route('site.tutor',session('id'));
     }
 
     
@@ -46,6 +74,8 @@ class CadastroController extends Controller
 
         session(['tutor'=>$validacao->login]);
         session(['id'=>$validacao->id]);
+        session(['foto'=>$validacao->foto]);
+
               
         return view('site.home');
     }
@@ -69,7 +99,22 @@ class CadastroController extends Controller
         $pet->raca = $request->raca;
         $pet->altura = $request->altura;
         $pet->comprimento = $request->comprimento;
+
+        if($request->hasFile('foto') && $request->file('foto')->isValid()){
+
+            $requestImage= $request->foto;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extension;
+
+            $requestImage->move(public_path("imgUsuario/pets"),$imageName);
+            
+            $pet->foto = $imageName;
+        }
+
         $pet->save();
+
         return redirect()->route('site.tutor',session('id'));
     }
 

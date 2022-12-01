@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('rua',50)->nullable();
             $table->string('complemento',50)->nullable();
             $table->string('numero',20)->nullable();
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

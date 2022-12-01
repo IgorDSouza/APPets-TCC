@@ -49,7 +49,8 @@
         </div>
       </nav>
     <div class="tutorInfo" >
-        <img class="circleImg" src="../wwwroot/img/imgUsuario/tutor.jpg" alt="IMAGEM TUTOR">
+        <img class="circleImg" src="../imgUsuario/usuarios/{{session('foto')}}" alt="IMAGEM TUTOR">
+        <a class="nav-link" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Alterar Imagem</a>
         <div class="tutorTitle">         
             <H1 >Ola {{session('tutor');}} </H1>
             <h2>Como estão nossos 'aumigos' hoje?</h2>
@@ -57,38 +58,41 @@
    </div>
 
    <div class="pets" id="pets">
-    <section class="cards">
+    <section id='petcards' class="cards">
       @isset($pets)
         
         @if($pets)
         @foreach($pets as $pet)
         <div class="card">
        
-           <a><div class="imgCard"><img src="../wwwroot/img/imgUsuario/pet1.jpg"  alt="Imagem do pet" > </div> 
+           <a><div class="imgCard"><img src="../imgUsuario/pets/{{$pet->foto}}"  alt="Imagem do pet" > </div> 
           {{$pet->nome}}</a>
     
         </div>
       @endforeach
         @endif
       @endisset
-  
+</section>
+      <div onclick="addPetForm()" id="plus" >+</div>
       
-      <form method="post" action="/storePet">
+      <form id="addPet" method="post" action="/storePet" enctype="multipart/form-data">
                   @csrf
                   <label for="usuario"> Nome</label>
-                      <input type="text" name="nome" required>
+                      <input type="text" name="nome" required/>
                       <label for="dataNascto"> Data Nascimento</label>
                       <input type="date" name="dataNascto">
                       <label for="peso">Peso</label>
                       <input type="text" name="peso">
                       <label for="raca">Raça</label>
-                      <input type="text" name="raca" required>
+                      <input type="text" name="raca" required/>
                       <label for="comprimento">comprimento</label>
                       <input type="text" name="comprimento" >  
                       <label for="altura">altura</label>
-                      <input type="text" name="altura" >                    
-                      <input type="submit" value="Cadastrar Pet" class="btn-primary p10lr" style="margin-bottom: 10px;">                      
-                  </form> 
+                      <input type="text" name="altura" >  
+                      <label for="foto">Foto do Pet</label>
+                      <input type="file" name="foto" required>                   
+                      <input  type="submit" value="Cadastrar Pet" class="btn-primary p10lr" style="margin-bottom: 10px;">                      
+       </form> 
 </div>
                   
 
@@ -98,6 +102,10 @@
         <div class="compromissos"></div>
      
    </div>
+
+  
+   
+
    
    <div>
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3  border-top bgblury">
@@ -118,4 +126,52 @@
 
 </div>
 </div> 
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+              <div id="form"> 
+              
+                  <form method="POST" action="/storeimg"  enctype="multipart/form-data">
+                    @csrf
+                    <label for="foto">Alterar foto</label>
+                      <input type="file" name="foto" required> 
+                      <input type="submit" value="Salvar" class=" btn-primary p10lr">
+                  </form>
+              </div>
+      </div>
+    </div>
+  </div>
+</div>
+@push('scripts')
+
+    <script> 
+      var addPet=document.getElementById('addPet'); 
+      var plus=document.getElementById('plus');
+      var petCards=document.getElementById('petcards');
+
+
+    function addPetForm(){
+      addPet.style="display: flex ";
+      plus.style="display: none !important";
+      petCards.style="display: none !important";
+
+    }
+
+    function hidePlus(){
+      
+      addPet.style="display: none ";
+      plus.style="display: block ";
+      petCards.style="display: flex";
+
+    }
+    document.addEventListener('submit',hidePlus);
+
+
+    </script>
+
+@endpush
 @endsection

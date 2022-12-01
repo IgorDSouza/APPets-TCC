@@ -24,6 +24,9 @@ Route::get('/error', [CadastroController::class, 'index'])->name('site.erro');
 
 Route::post('/store', [CadastroController::class, 'storeTutor']);
 
+Route::post('/storeimg', [CadastroController::class, 'storeimg']);
+
+
 Route::post('/storePet', [CadastroController::class, 'storePet'])->name('site.storePet');
 
 

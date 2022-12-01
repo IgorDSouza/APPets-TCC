@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('altura',60)->nullable();
             $table->string('comprimento',60)->nullable();
             $table->string('raca',60);
+            $table->string('foto');
             $table->date('idade')->nullable();
             $table->string('peso',10)->nullable();
             $table->timestamps();
