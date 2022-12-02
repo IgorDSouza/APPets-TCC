@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ocorrencia;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Pet;
@@ -10,7 +11,8 @@ use Illuminate\Support\Facades\DB;
 class CadastroController extends Controller
 {
     public function index(){  
-        return view('site.home');
+        $ocorrencias = Ocorrencia::all()->take(5);
+        return view('site.home',['ocorrencias'=>$ocorrencias]);
     }
     public function conteudo(){  
         return view('site.conteudo');

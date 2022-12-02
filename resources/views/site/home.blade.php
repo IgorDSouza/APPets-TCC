@@ -13,7 +13,7 @@
 @section('content')
           <nav class="navbar navbar-expand-lg sticky-top "> 
             <div class="container-fluid">
-              <a class="navbar-brand" href="home.html" style="color: rgb(45, 206, 80);
+              <a class="navbar-brand" href="/" style="color: rgb(45, 206, 80);
               ;"> <img style="width: 50px;" src="imgHome/icon.png" alt="icone appets"> Appets</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -36,8 +36,11 @@
                   <li class="nav-item">
                     <a class="nav-link" id='loginNav' data-bs-toggle="modal" href="#exampleModalToggle" role="button">Iniciar sessão</a>
                   </li>
-                  <li id="tutorNav" class="nav-item"  >
+                  <li id="tutorNav" class="nav-item">
                     <a class="nav-link"  href="{{route('site.tutor',session('id') ) }}" >Area do Tutor</a>
+                  </li>
+                  <li id="ocorrenciaNav" class="nav-item">
+                    <a class="nav-link"  href="{{route('ocorrecia.conteudos')}}">Ocorrências</a>
                   </li>
                 </ul>
                 <a style="width: 121.797px;"> </a>
@@ -66,8 +69,8 @@
       </div>
         
         <section class="cards">
-          
-             <div class="card card-1">
+          @include('site.principaisOcorrencias')
+             {{-- <div class="card card-1">
 
               
                 <a href = "conteudo.php?nome=envenenamentoCard" ><div class="imgCard"><img class="d-block m-l-r borda " src="imgHome/envenenamento.png"  alt="Imagem de capa do card" > </div> 
@@ -97,11 +100,11 @@
               
               <a href = "conteudo.php?nome=asfixiaCard"><div class="imgCard"> <img class="d-block m-l-r borda" src="imgHome/asfixia.png"  alt="Imagem de capa do card"></div>
                 Asfixia</a>
-             </div>
-
+             </div> --}}
+            </section>  
        </div>
-      </section>   
-      <div class="d-flex justify-content-center"> <a  id="options" class ="btn-primary btn" href="/conteudo">Todas as Opções</a></div>
+       
+      <div class="d-flex justify-content-center"> <a  id="options" class ="btn-primary btn" href="{{route('ocorrecia.conteudos')}}">Todas as Opções</a></div>
 
       
       <section id="maps">
@@ -207,10 +210,11 @@
 
 @push('scripts')
 @if(session('tutor')!=null && session('tutor')!='' )                  
-<script> document.getElementById("loginNav").style.display = "none";</script>
-<script> document.getElementById("tutorNav").style.display = "block";</script>
-
-
+  <script> document.getElementById("loginNav").style.display = "none";</script>
+  <script> 
+    document.getElementById("tutorNav").style.display = "block";
+    document.getElementById("ocorrenciaNav").style.display = "block";
+  </script>
  @endif
  @endpush
 </body>

@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CadastroController;
+use App\Http\Controllers\OcorrenciaController;
+use App\Models\Ocorrencia;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +17,6 @@ use App\Http\Controllers\CadastroController;
 */
 
 Route::get('/', [CadastroController::class, 'index'])->name('site.home');
-
-Route::get('/conteudo', [CadastroController::class, 'conteudo'])->name('site.conteudo');
-
-
 
 Route::get('/error', [CadastroController::class, 'index'])->name('site.erro');
 
@@ -40,10 +39,12 @@ Route::get('/pet/{id?}', [CadastroController::class, 'pet'])->name('site.pet');
 
 
 
-
-
-
-
+Route::prefix('ocorrencia')->group(function(){
+    Route::get('/conteudo', [OcorrenciaController::class, 'index'])->name('ocorrecia.conteudos');
+    Route::get('', [OcorrenciaController::class, 'index'])->name('ocorrencia.index');
+    Route::get('/create', [OcorrenciaController::class, 'create'])->name('ocorrencia.create');
+    Route::post('/store', [OcorrenciaController::class, 'store'])->name('ocorrencia.store');
+});
 
 
 

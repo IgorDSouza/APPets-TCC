@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('usuario_id')->references('id')->on('usuarios')->contrained()->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->string('tipo_ocorrencia');
-            $table->string('conteudo_solucao');
+            $table->longText('conteudo_solucao');
             $table->string('titulo_ocorrencia');
             $table->timestamps();
         });    }
