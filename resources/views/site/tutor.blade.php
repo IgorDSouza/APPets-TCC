@@ -36,9 +36,6 @@
               <li class="nav-item">
                 <a class="nav-link " href="#agenda">Agenda</a>
               </li>
-              <li class="nav-item linkTutor" >
-                <a class="nav-link">Area do Tutor</a>
-              </li>
               <li class="nav-item " >
                 <a class="nav-link" href="{{route('site.logout')}}">Sair</a>
               </li>
@@ -50,7 +47,15 @@
       </nav>
     <div class="tutorInfo" >
         <img class="circleImg" src="../imgUsuario/usuarios/{{session('foto')}}" alt="IMAGEM TUTOR">
-        <a class="nav-link" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Alterar Imagem</a>
+
+        <div>
+          <a id="select" onclick='showHide()'>+</a>
+
+          <div id="alteracoes" style="display:none; background-color: #447e605c;">
+            <a class="nav-link" data-bs-toggle="modal" href="#exampleModalToggle" role="button" style="color:black; border:1px solid black; border-radius:10px;" >Alterar Imagem</a>
+            <a class="nav-link" data-bs-toggle="modal" href="#exampleModalToggle2" role="button"  style="color:black;border:1px solid black; border-radius:10px;">Adicionar mais informações</a>
+          </div>
+        </div>
         <div class="tutorTitle">         
             <H1 >Ola {{session('tutor');}} </H1>
             <h2>Como estão nossos 'aumigos' hoje?</h2>
@@ -65,7 +70,7 @@
         @foreach($pets as $pet)
         <div class="card">
        
-           <a><div class="imgCard"><img src="../imgUsuario/pets/{{$pet->foto}}"  alt="Imagem do pet" > </div> 
+           <a href="/pet/{{$pet->id}}"><div class="imgCard"><img src="../imgUsuario/pets/{{$pet->foto}}"  alt="Imagem do pet"  > </div> 
           {{$pet->nome}}</a>
     
         </div>
@@ -73,7 +78,7 @@
         @endif
       @endisset
 </section>
-      <div onclick="addPetForm()" id="plus" >+</div>
+      <div onclick="addPetForm()" id="plus" style="font-size:30px">+</div>
       
       <form id="addPet" method="post" action="/storePet" enctype="multipart/form-data">
                   @csrf
@@ -91,7 +96,9 @@
                       <input type="text" name="altura" >  
                       <label for="foto">Foto do Pet</label>
                       <input type="file" name="foto" required>                   
-                      <input  type="submit" value="Cadastrar Pet" class="btn-primary p10lr" style="margin-bottom: 10px;">                      
+                      <input  type="submit" value="Cadastrar Pet" class="btn-primary p10lr" style="margin-bottom: 10px;"> 
+                      <input onclick="hidePlus()"type="button" value="Fechar" class=" btn-primary p10lr">
+                     
        </form> 
 </div>
                   
@@ -99,8 +106,16 @@
     <div id = 'agenda' class="agendaTitle"><h1>Agenda</h1></div>
    <div class="d-flex justify-content-center">   
 
-        <div class="compromissos"></div>
-     
+        <div class="compromissos">
+          @foreach($agenda as $compromissos)
+              @foreach($compromissos as $compromisso)
+
+                  <div style="width:100%; font-size:25px"><strong>Pet:</strong> {{$compromisso->nome}}<strong>&nbsp;&nbsp;&nbsp;&nbsp;Compromisso:</strong> {{$compromisso->compromisso}}<strong>&nbsp;&nbsp;&nbsp;&nbsp;Data:</strong> {{$compromisso->data}}<strong>&nbsp;&nbsp;&nbsp;&nbsp;Hora:</strong> {{$compromisso->hora}}</div><br>
+
+              @endforeach
+          @endforeach
+         
+     </div>
    </div>
 
   
@@ -146,6 +161,41 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+              <div id="form"> 
+              
+                  <form method="POST" action="/addInfo"  enctype="multipart/form-data">
+                    @csrf
+                    <label for="nome">Nome</label>
+                      <input type="text" name="nome" required> 
+                      <label for="nome">Pais</label>
+                      <input type="text" name="pais" required>
+                      <label for="nome">Estado</label>
+                      <input type="text" name="estado" required>
+                      <label for="nome">Cidade</label>
+                      <input type="text" name="cidade" required>
+                      <label for="nome">Bairro</label>
+                      <input type="text" name="bairro" required>
+                      <label for="nome">Rua</label>
+                      <input type="text" name="rua" required>
+                      <label for="nome">Numero</label>
+                      <input type="text" name="numero" required>
+                      <label for="nome">Complemento</label>
+                      <input type="text" name="complemento" required>
+                      <input type="submit" value="Salvar" class=" btn-primary p10lr">
+
+                  </form>
+              </div>
+      </div>
+    </div>
+  </div>
+</div>
 @push('scripts')
 
     <script> 
@@ -153,6 +203,20 @@
       var plus=document.getElementById('plus');
       var petCards=document.getElementById('petcards');
 
+      var select=document.getElementById('select');
+      var alteracoes=document.getElementById('alteracoes');
+
+
+    function showHide(){
+      if(alteracoes.style.display=="block"){
+        alteracoes.style="display:none";
+      }else 
+       
+      if(alteracoes.style.display=="none"){
+      alteracoes.style="display:block";
+      }
+
+    }
 
     function addPetForm(){
       addPet.style="display: flex ";
@@ -169,6 +233,8 @@
 
     }
     document.addEventListener('submit',hidePlus);
+
+
 
 
     </script>

@@ -26,16 +26,18 @@ Route::post('/store', [CadastroController::class, 'storeTutor']);
 
 Route::post('/storeimg', [CadastroController::class, 'storeimg']);
 
+Route::post('/addInfo', [CadastroController::class, 'addInfo']);
 
 Route::post('/storePet', [CadastroController::class, 'storePet'])->name('site.storePet');
 
-
 Route::get('/logout', [CadastroController::class,'logout'])->name('site.logout');
-
 
 Route::post('/login', [CadastroController::class, 'login']);
 
 Route::get('/tutor/{id?}', [CadastroController::class, 'tutor'])->name('site.tutor');
+
+Route::get('/pet/{id?}', [CadastroController::class, 'pet'])->name('site.pet');
+
 
 
 

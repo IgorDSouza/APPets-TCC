@@ -38,6 +38,31 @@ class CadastroController extends Controller
 
     }
 
+    public function addInfo(Request $request){  
+
+        $usuarioid = session('id');
+
+        $usuario= Usuario::find($usuarioid);
+
+        $usuario->nome = $request->nome;
+        $usuario->pais = $request->pais;
+        $usuario->uf = $request->estado;
+        $usuario->cidade = $request->cidade;
+        $usuario->bairro = $request->bairro;
+        $usuario->numero = $request->numero;
+        $usuario->complemento = $request->complemento;
+        $usuario->rua = $request->rua;
+
+
+        $usuario->save();
+
+
+
+        return redirect()->route('site.tutor',session('id'));
+
+    }
+
+
     public function storeimg(Request $request){  
         $usuarioid = session('id');
 
@@ -87,8 +112,23 @@ class CadastroController extends Controller
         ->join('usuarios', 'pet.tutor_id', '=' , 'usuarios.id')->where('usuarios.id',session('id'))
         ->select('pet.*')->get();
 
+        $agenda = [];
+
+        $i=0;
+
+        foreach($pets as $pet){
+
+        $compromissos = DB::table('comprimisso')
+         ->join('pet', 'comprimisso.animal_id', '=' , 'pet.id')->where('pet.id',$pet->id)
+         ->select('comprimisso.compromisso','comprimisso.data','comprimisso.hora','comprimisso.nota','pet.nome')->limit(1)->get();
+
+            array_push($agenda,$compromissos);
+
+        }
         
-        return view('site.tutor',['pets'=>$pets]);
+
+        
+        return view('site.tutor',['pets'=>$pets,'agenda'=>$agenda]);
     }
 
     public function storePet(Request $request ){
@@ -117,6 +157,17 @@ class CadastroController extends Controller
 
         return redirect()->route('site.tutor',session('id'));
     }
+
+    public function pet($id){
+
+        $pet = DB::table('pet')
+        ->where('id',$id)
+        ->select('pet.*')->first();
+
+        return view('site.pet',['pet'=>$pet]);
+
+    }
+
 
     public function logout(){
         session()->flush();

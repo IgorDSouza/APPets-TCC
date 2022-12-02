@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../wwwroot/css/fonts.css">
-    <link rel="stylesheet" href="../wwwroot/css/spacing.css">
-    <link rel="stylesheet" href="../wwwroot/css/colors.css">
-    <link rel="stylesheet" href="../wwwroot/css/login.css">
-    <link rel="stylesheet" href="../wwwroot/css/pet.css">
+    <link rel="stylesheet" href="{{URL::asset ('css/fonts.css')}}">
+    <link rel="stylesheet" href="{{URL::asset ('css/spacing.css')}}">
+    <link rel="stylesheet" href="{{URL::asset ('css/colors.css')}}">
+    <link rel="stylesheet" href="{{URL::asset ('css/login.css')}}">
+    <link rel="stylesheet" href="{{URL::asset ('css/pet.css')}}">
      <!--bootstrap -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -49,7 +49,7 @@
     <div style="text-align: center;">
         <img class="circleImg" src="../wwwroot/img/imgUsuario/pet1.jpg" alt="IMAGEM PET">
         <div>         
-            <H1 >Godofredo</H1>
+            <H1 >{{ $pet->nome }}</H1>
         </div>
    </div>
    <div class="topicos">
