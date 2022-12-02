@@ -66,6 +66,10 @@ main{
        font-family: 'Lilita One', cursive !important;
 }
 
+#ocorrenciaButton{
+    display: none;
+}
+
 @media (min-width:200px) and (max-width:400px) {
     div.container-fluid{
         justify-content:unset !important;
