@@ -160,15 +160,7 @@ class CadastroController extends Controller
         return redirect()->route('site.tutor',session('id'));
     }
 
-    public function pet($id){
 
-        $pet = DB::table('pet')
-        ->where('id',$id)
-        ->select('pet.*')->first();
-
-        return view('site.pet',['pet'=>$pet]);
-
-    }
 
 
     public function logout(){

@@ -20,8 +20,8 @@
 
     <nav class="navbar navbar-expand-lg sticky-top "> 
         <div class="container-fluid">
-          <a class="navbar-brand" href="home.html" style="color: rgb(45, 206, 80);
-          ;"> <img style="width: 50px;" src="../wwwroot/img/imgHome/iconLogin.png" alt="icone appets"> Appets</a>
+          <a class="navbar-brand" href="/" style="color: rgb(45, 206, 80);
+          ;"> <img style="width: 50px;" src="/imgHome/iconLogin.png" alt="icone appets"> Appets</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -37,9 +37,7 @@
               <li class="nav-item">
                 <a class="nav-link " href="#agenda">Area Tutor</a>
               </li>
-              <li class="nav-item linkTutor" >
-                <a class="nav-link">Area do Pet</a>
-              </li>
+
             </ul>
             <a style="width: 121.797px;"> </a>
 
@@ -47,14 +45,14 @@
         </div>
       </nav>
     <div style="text-align: center;">
-        <img class="circleImg" src="../wwwroot/img/imgUsuario/pet1.jpg" alt="IMAGEM PET">
+        <img class="circleImg" src="/imgUsuario/pets/{{$pet->foto}}" alt="IMAGEM PET">
         <div>         
             <H1 >{{ $pet->nome }}</H1>
         </div>
    </div>
    <div class="topicos">
         <div class="links">
-            <a href="">Remédios e Cuidados</a>
+            <a href="{{$pet->id}}/remedios">Remédios e Cuidados</a>
             <a href="">Agenda Pet</a> 
             <a href="">Informações Pet</a> 
             <a href="">Ferramentas</a> 
@@ -64,7 +62,45 @@
    </div>
    <div class="d-flex justify-content-center">   
 
-        <div class="compromissos"></div>
+        <div class="compromissos">
+          
+          @if(isset($remedios) && isset($cuidados))
+          
+          <h3>Remedios</h3>
+         
+            @foreach($remedios as $remedio)
+            
+              
+              <p>
+                <strong>nome</strong> {{$remedio->nome}}
+                <strong>Dosagem(ml)</strong> {{$remedio->dosagem}}
+                <strong>Frequencia</strong> {{$remedio->periodo}}
+                <div>
+                  <a  href="{{$pet->id}}/deleteRemedio/{{$remedio->id}}">Excluir  </a>
+                  <a  href="#editRemedio">Alterar</a>
+               </div>
+                
+              </p>
+               @endforeach
+
+            <h3>Cuidados</h3>
+               @foreach($cuidados as $cuidado)
+              <p>
+                <strong>Cuidados</strong> {{$cuidado->observacao}}
+                <div> 
+                  <a href="">Excluir  </a>
+                  <a href="">Alterar</a>
+               </div>
+              </p>
+              @endforeach
+
+              <h1><a class="nav-link"  data-bs-toggle="modal" href="#storeRemedio" role="button">+</a></h1>
+          @else
+          <h2>Nenhum remedio ou cuidado cadastrado!</h2>
+          
+          @endif
+
+        </div>
      
    </div>
    
@@ -87,5 +123,75 @@
 
 </div>
 </div> 
+<div class="modal fade" id="storeRemedio" aria-hidden="true" aria-labelledby="storeRemedio" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div id="form"> 
+                  <img src="/imgUsuario/pets/iconeRemedio.png" alt ="icone appets">
+                  <form method="post" action='{{$pet->id}}/storeRemedio'>
+                  @csrf 
+                  <h3>Remedios</h3>
+                  <label for="nomeRemedio"> Nome</label><br>
+                      <input type="text" name="nomeRemedio" required><br>
+                      <label for="dosagem"> Dosagem(ML)</label><br>
+                      <input type="number" name="dosagem" required><br>
+                      <label for="periodo">Periodo</label><br>
+                      <input type="text" name="periodo" required><br>
+                      <input type="submit"  value="Adicionar Remedio" class="btn-primary p10lr" style="margin-bottom: 10px;">
+                      <input type="button" value="Cuidados" class=" btn-primary p10lr" data-bs-target="#storeCuidado" data-bs-toggle="modal" data-bs-dismiss="modal">           
+                  </form>
+              </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editRemedio" aria-hidden="true" aria-labelledby="editRemedio" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div id="form"> 
+                  <img src="/imgUsuario/pets/iconeRemedio.png" alt ="icone appets">
+                  <form method="post" action='{{$pet->id}}/editRemedio'>
+                  @csrf 
+                  <h3>Remedios</h3>
+                  <label for="nomeRemedio"> Nome</label><br>
+                      <input type="text" name="nomeRemedio" required><br>
+                      <label for="dosagem"> Dosagem(ML)</label><br>
+                      <input type="number" name="dosagem" required><br>
+                      <label for="periodo">Periodo</label><br>
+                      <input type="text" name="periodo" required><br>
+                      <input type="submit"  value="Adicionar Remedio" class="btn-primary p10lr" style="margin-bottom: 10px;">
+                      <input type="button" value="Cuidados" class=" btn-primary p10lr" data-bs-target="#storeCuidado" data-bs-toggle="modal" data-bs-dismiss="modal">           
+                  </form>
+              </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="storeCuidado" aria-hidden="true" aria-labelledby="storeCuidado" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div id="form"> 
+                  <img src="/imgUsuario/pets/iconeCuidados.png" alt ="icone appets">
+                  <form method="post" action='{{$pet->id}}/storeCuidado'>
+                  @csrf 
+                  <h3>Cuidados</h3>
+                  <label for="cuidado"> Descreva o Cuidado Especial</label><br>
+                      <input type="text" name="cuidado" required><br>
+                      <input type="submit"  value="Adicionar Cuidado" class="btn-primary p10lr" style="margin-bottom: 10px;">
+                      <input type="button" value="Remedios" class=" btn-primary p10lr" data-bs-target="#storeRemedio" data-bs-toggle="modal" data-bs-dismiss="modal">           
+                  </form>
+              </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

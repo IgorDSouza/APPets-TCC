@@ -69,7 +69,7 @@
       </div>
         
         <section class="cards">
-          @include('site.principaisOcorrencias')
+          <!-- @include('site.principaisOcorrencias')
              {{-- <div class="card card-1">
 
               
@@ -100,7 +100,7 @@
               
               <a href = "conteudo.php?nome=asfixiaCard"><div class="imgCard"> <img class="d-block m-l-r borda" src="imgHome/asfixia.png"  alt="Imagem de capa do card"></div>
                 Asfixia</a>
-             </div> --}}
+             </div> --}} -->
             </section>  
        </div>
        

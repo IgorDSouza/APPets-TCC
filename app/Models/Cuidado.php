@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Remedio extends Model
+class Cuidado extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nome',
-        'dosagem',
-        'periodo',
+        'observacao',
         'animal_id',
     ];
 
@@ -21,5 +19,5 @@ class Remedio extends Model
      * @var array<int, string>
      */
   
-    protected $table='remedio';
+    protected $table='cuidado';
 }

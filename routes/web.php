@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CadastroController;
+use App\Http\Controllers\PetController;
 use App\Http\Controllers\OcorrenciaController;
 use App\Models\Ocorrencia;
 
@@ -17,6 +18,7 @@ use App\Models\Ocorrencia;
 */
 
 Route::get('/', [CadastroController::class, 'index'])->name('site.home');
+
 
 Route::get('/error', [CadastroController::class, 'index'])->name('site.erro');
 
@@ -35,7 +37,23 @@ Route::post('/login', [CadastroController::class, 'login']);
 
 Route::get('/tutor/{id?}', [CadastroController::class, 'tutor'])->name('site.tutor');
 
-Route::get('/pet/{id?}', [CadastroController::class, 'pet'])->name('site.pet');
+
+Route::prefix('pet')->group(function(){
+    Route::get('/{id?}', [PetController::class, 'pet'])->name('site.pet');
+
+    Route::post('{id}/storeRemedio', [PetController::class, 'storeRemedio']);
+
+    Route::get('{idPet}/deleteRemedio/{id}', [PetController::class, 'deleteRemedio']);
+    Route::post('{idPet}/editRemedio/{id}', [PetController::class, 'editRemedio']);
+
+
+    Route::post('{id}/storeCuidado', [PetController::class, 'storeCuidado']);
+
+
+
+
+
+});
 
 
 
