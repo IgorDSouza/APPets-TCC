@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+@extends('layout.default')
+
+@push("links")
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +14,8 @@
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <title>Area Tutor</title>
-</head>
-<body id="home">
+@endpush
+@section('content')
     <div style="backdrop-filter:brightness(0.8)">
 
     <nav class="navbar navbar-expand-lg sticky-top "> 
@@ -52,8 +52,8 @@
    </div>
    <div class="topicos">
         <div class="links">
-            <a href="{{$pet->id}}/remedios">Remédios e Cuidados</a>
-            <a href="">Agenda Pet</a> 
+            <a href="remedio">Remédios e Cuidados</a>
+            <a href="agenda">Agenda Pet</a> 
             <a href="">Informações Pet</a> 
             <a href="">Ferramentas</a> 
 
@@ -63,45 +63,17 @@
    <div class="d-flex justify-content-center">   
 
         <div class="compromissos">
-          
-          @if(isset($remedios) && isset($cuidados))
-          
-          <h3>Remedios</h3>
-         
-            @foreach($remedios as $remedio)
-            
-              
-              <p>
-                <strong>nome</strong> {{$remedio->nome}}
-                <strong>Dosagem(ml)</strong> {{$remedio->dosagem}}
-                <strong>Frequencia</strong> {{$remedio->periodo}}
-                <div>
-                  <a  href="{{$pet->id}}/deleteRemedio/{{$remedio->id}}">Excluir  </a>
-                  <a  href="#editRemedio">Alterar</a>
-               </div>
-                
-              </p>
-               @endforeach
+          @if($rota=="remedio")
 
-            <h3>Cuidados</h3>
-               @foreach($cuidados as $cuidado)
-              <p>
-                <strong>Cuidados</strong> {{$cuidado->observacao}}
-                <div> 
-                  <a href="">Excluir  </a>
-                  <a href="">Alterar</a>
-               </div>
-              </p>
-              @endforeach
+          @include('site.pets.remedioseCuidados');
 
-              <h1><a class="nav-link"  data-bs-toggle="modal" href="#storeRemedio" role="button">+</a></h1>
-          @else
-          <h2>Nenhum remedio ou cuidado cadastrado!</h2>
-          
+          @elseif($rota=="agenda")
+
+          @include('site.pets.agenda')
+
           @endif
 
-        </div>
-     
+          </div>
    </div>
    
    <div>
@@ -130,7 +102,7 @@
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       <div id="form"> 
                   <img src="/imgUsuario/pets/iconeRemedio.png" alt ="icone appets">
-                  <form method="post" action='{{$pet->id}}/storeRemedio'>
+                  <form method="post" action='remedio/storeRemedio'>
                   @csrf 
                   <h3>Remedios</h3>
                   <label for="nomeRemedio"> Nome</label><br>
@@ -147,31 +119,6 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="editRemedio" aria-hidden="true" aria-labelledby="editRemedio" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-body">
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      <div id="form"> 
-                  <img src="/imgUsuario/pets/iconeRemedio.png" alt ="icone appets">
-                  <form method="post" action='{{$pet->id}}/editRemedio'>
-                  @csrf 
-                  <h3>Remedios</h3>
-                  <label for="nomeRemedio"> Nome</label><br>
-                      <input type="text" name="nomeRemedio" required><br>
-                      <label for="dosagem"> Dosagem(ML)</label><br>
-                      <input type="number" name="dosagem" required><br>
-                      <label for="periodo">Periodo</label><br>
-                      <input type="text" name="periodo" required><br>
-                      <input type="submit"  value="Adicionar Remedio" class="btn-primary p10lr" style="margin-bottom: 10px;">
-                      <input type="button" value="Cuidados" class=" btn-primary p10lr" data-bs-target="#storeCuidado" data-bs-toggle="modal" data-bs-dismiss="modal">           
-                  </form>
-              </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="modal fade" id="storeCuidado" aria-hidden="true" aria-labelledby="storeCuidado" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -179,7 +126,7 @@
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       <div id="form"> 
                   <img src="/imgUsuario/pets/iconeCuidados.png" alt ="icone appets">
-                  <form method="post" action='{{$pet->id}}/storeCuidado'>
+                  <form method="post" action='remedio/storeCuidado'>
                   @csrf 
                   <h3>Cuidados</h3>
                   <label for="cuidado"> Descreva o Cuidado Especial</label><br>
@@ -193,5 +140,30 @@
   </div>
 </div>
 
-</body>
-</html>
+<div class="modal fade" id="storeCompromisso" aria-hidden="true" aria-labelledby="storeCompromisso" tabindex="-2">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div id="form"> 
+                  <img src="/imgUsuario/pets/iconeCuidados.png" alt ="icone appets">
+                  <form method="post" action='agenda/storeCompromisso'>
+                  @csrf 
+                  <h3>Compromissos</h3>
+                  <label for="compromisso"> Descreva o Compromisso</label><br>
+                      <input type="text" name="compromisso" required><br>
+                      <label for="data"> informe a data</label><br>
+                      <input type="date" name="data" required><br>
+                      <label for="hora"> informe a Hora</label><br>
+                      <input type="time" name="hora" required><br>
+                      <label for="nota"> Alguma observação?</label><br>
+                      <input type="text" name="nota" required><br>
+                      <input type="submit"  value="Adicionar Compromisso" class="btn-primary p10lr" style="margin-bottom: 10px;">
+                  </form>
+              </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
+

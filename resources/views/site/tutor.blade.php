@@ -70,7 +70,7 @@
         @foreach($pets as $pet)
         <div class="card">
        
-           <a href="/pet/{{$pet->id}}"><div class="imgCard"><img src="../imgUsuario/pets/{{$pet->foto}}"  alt="Imagem do pet"  > </div> 
+           <a href="/pet/{{$pet->id}}/remedio"><div class="imgCard"><img src="../imgUsuario/pets/{{$pet->foto}}"  alt="Imagem do pet"  > </div> 
           {{$pet->nome}}</a>
     
         </div>

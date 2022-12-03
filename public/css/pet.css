@@ -58,6 +58,29 @@ a.nav-link:hover{
     border: 1px solid black;
 
 }
+.formRemedioeCuidado{
+    padding: 15px;
+    background-color:#8cf0bc;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.alter{
+    display: flex;
+    justify-content: center;
+    z-index: 3;
+    align-items: center;
+    position: relative;
+
+}
+.botoesAlterEx a{
+    text-decoration: none;
+    color: #447e60 !important;
+}
+.botoesAlterEx a:hover{
+    color: #254635 !important;
+
+}
 @media (min-width:260px) and (max-width:300px){
    .links{
     width: 100%;

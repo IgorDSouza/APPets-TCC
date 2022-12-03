@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Pet;
 use App\Models\Remedio;
 use App\Models\Cuidado;
+use App\Models\Compromisso;
+
 use Illuminate\Support\Facades\DB;
 
 class PetController extends Controller
@@ -18,7 +20,7 @@ class PetController extends Controller
      */
     
 
-    public function pet($id){
+    public function pet($id,$rota){
 
         $pet = Pet::find($id);
 
@@ -33,7 +35,7 @@ class PetController extends Controller
         ->select('cuidado.id','cuidado.observacao')->get();
 
 
-        return view('site.pet',["remedios"=>$remedios, "cuidados"=>$cuidados, "pet"=>$pet]);
+        return view('site.pet',["remedios"=>$remedios, "cuidados"=>$cuidados, "pet"=>$pet,"rota"=>$rota]);
 
     }
 
@@ -48,7 +50,7 @@ class PetController extends Controller
 
         $remedio->save();
 
-        return redirect()->route('site.pet',['id'=>$id]);
+        return redirect()->route('site.pet',['id'=>$id, "rota"=>'remedio']);
 
     }
     public function deleteRemedio(Request $request, $idPet, $id){
@@ -58,20 +60,26 @@ class PetController extends Controller
 
         $remedio->delete();
 
-        return redirect()->route('site.pet',['id'=>$idPet]);
+        return redirect()->route('site.pet',['id'=>$idPet, "rota"=>'remedio']);
 
     }
 
-    public function edit(Request $request, $idPet, $id){
+
+    public function editRemedio(Request $request, $idPet, $id){
         
         $remedio = Remedio::find($id);
 
 
-        $remedio->delete();
+        $remedio->nome = $request->nomeRemedio;
+        $remedio->dosagem = $request->dosagem;
+        $remedio->periodo = $request->periodo;
+        $remedio->save();
 
-        return redirect()->route('site.pet',['id'=>$idPet]);
+
+        return redirect()->route('site.pet',['id'=>$idPet, "rota"=>'remedio']);
 
     }
+//----------------------------Cuidados---------------------------------------------------------------------
 
 
     public function storeCuidado(Request $request, $id){
@@ -81,11 +89,88 @@ class PetController extends Controller
         $cuidado->observacao = $request->cuidado;
         $cuidado->save();
 
-        return redirect()->route('site.pet',['id'=>$id]);
+        return redirect()->route('site.pet',['id'=>$id, "rota"=>'remedio']);
+
+    }
+    public function deleteCuidado(Request $request, $idPet, $id){
+        
+        $cuidado = Cuidado::find($id);
+
+
+        $cuidado->delete();
+
+        return redirect()->route('site.pet',['id'=>$idPet, "rota"=>'remedio']);
 
     }
 
+    public function editCuidado(Request $request, $idPet, $id){
+        
+        $cuidado = Cuidado::find($id);
 
+        $cuidado->observacao = $request->cuidado;
+      
+        $cuidado->save();
+
+
+        return redirect()->route('site.pet',['id'=>$idPet, "rota"=>'remedio']);
+
+    }
+//----------------------------Agenda---------------------------------------------------------------------
+
+public function agenda($id){
+
+    dd($id);
+
+    $pet = Pet::find($id);
+
+    $compromissos = DB::table('comprimisso')
+     ->join('pet', 'comprimisso.animal_id', '=' , 'pet.id')->where('pet.id',$pet->id)
+     ->select('comprimisso.compromisso','comprimisso.data','comprimisso.hora','comprimisso.nota','pet.nome')->limit(1)->get();
+
+
+    return view('site.pet',["pet"=>$pet,"rota"=>'agenda',"compromisso"=>$compromissos]);
+
+}
+
+public function storeCompromisso(Request $request, $id){
+
+    $compromisso = new Compromisso;
+        $compromisso->animal_id = $id;
+        $compromisso->data = $request->data;
+        $compromisso->hora = $request->hora;
+        $compromisso->nota = $request->nota;
+        $compromisso->compromisso = $request->compromisso;
+        $compromisso->save();
 
    
+
+      return redirect()->route('site.pet',['id'=>$id,'rota'=>'agenda']);
+
 }
+public function deleteCompromisso(Request $request, $idPet, $id){
+        
+    $compromisso = Cuidado::find($id);
+
+
+    $compromisso->delete();
+
+    return redirect()->route('site.pet',['id'=>$idPet, "rota"=>'agenda']);
+
+}
+public function editCompromisso(Request $request, $idPet, $id){
+        
+    $compromisso = Compromisso::find($id);
+
+    $compromisso->animal_id = $id;
+    $compromisso->data = $request->data;
+    $compromisso->hora = $request->hora;
+    $compromisso->nota = $request->nota;
+    $compromisso->compromisso = $request->compromisso;
+    $compromisso->save();
+
+
+    return redirect()->route('site.pet',['id'=>$idPet, "rota"=>'agenda']);
+
+}
+}
+    

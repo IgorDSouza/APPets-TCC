@@ -39,17 +39,34 @@ Route::get('/tutor/{id?}', [CadastroController::class, 'tutor'])->name('site.tut
 
 
 Route::prefix('pet')->group(function(){
-    Route::get('/{id?}', [PetController::class, 'pet'])->name('site.pet');
+    //----------------------------Remedios------------------------------------------------------------------
 
-    Route::post('{id}/storeRemedio', [PetController::class, 'storeRemedio']);
+    Route::get('/{id?}/{rota}', [PetController::class, 'pet'])->name('site.pet');
 
-    Route::get('{idPet}/deleteRemedio/{id}', [PetController::class, 'deleteRemedio']);
-    Route::post('{idPet}/editRemedio/{id}', [PetController::class, 'editRemedio']);
+    Route::post('{id}/remedio/storeRemedio', [PetController::class, 'storeRemedio']);
+
+    Route::get('{idPet}/remedio/deleteRemedio/{id}', [PetController::class, 'deleteRemedio']);
+
+    Route::post('{idPet}/remedio/editRemedio/{id}', [PetController::class, 'editRemedio']);
+
+//----------------------------Cuidados---------------------------------------------------------------------
+
+    Route::post('{id}/remedio/storeCuidado', [PetController::class, 'storeCuidado']);
+
+    Route::get('{idPet}/remedio/deleteCuidado/{id}', [PetController::class, 'deleteCuidado']);
+    
+    Route::post('{idPet}/remedio/editCuidado/{id}', [PetController::class, 'editCuidado']);
+
+//----------------------------Agenda---------------------------------------------------------------------
+
+    Route::get('{id}/agenda', [PetController::class, 'agenda']);
 
 
-    Route::post('{id}/storeCuidado', [PetController::class, 'storeCuidado']);
+    Route::post('{id}/agenda/storeCompromisso', [PetController::class, 'storeCompromisso']);
 
-
+    Route::get('{idPet}/deleteCompromisso/{id}', [PetController::class, 'deleteCompromisso']);
+    
+    Route::post('{idPet}/editCompromisso/{id}', [PetController::class, 'editCompromisso']);
 
 
 
