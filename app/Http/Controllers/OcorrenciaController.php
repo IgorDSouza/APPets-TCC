@@ -64,9 +64,10 @@ class OcorrenciaController extends Controller
      * @param  \App\Models\Ocorrencia  $ocorrencia
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ocorrencia $ocorrencia)
+    public function edit($id)
     {
-        //
+        $ocorrencia = Ocorrencia::find($id);
+        return view('site.ocorrencias.edit',['ocorrencia' => $ocorrencia]);
     }
 
     /**
@@ -76,9 +77,15 @@ class OcorrenciaController extends Controller
      * @param  \App\Models\Ocorrencia  $ocorrencia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ocorrencia $ocorrencia)
+    public function update(Request $request, $id)
     {
-        //
+        //atualiza os dados de uma linha no meu banco
+
+        $ocorrencia = Ocorrencia::find($id);
+        $ocorrencia->fill($request->toArray());
+        $ocorrencia->save();
+
+        return redirect()->route('ocorrecia.conteudos');
     }
 
     /**
@@ -87,8 +94,11 @@ class OcorrenciaController extends Controller
      * @param  \App\Models\Ocorrencia  $ocorrencia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ocorrencia $ocorrencia)
+    public function destroy($id)
     {
-        //
+        //Remove uma linha do banco de dados
+        $ocorrencia = Ocorrencia::find($id);
+        $ocorrencia->delete();
+        return redirect()->route('ocorrecia.conteudos');
     }
 }

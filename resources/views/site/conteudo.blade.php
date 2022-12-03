@@ -53,8 +53,7 @@
       </div>
     </div>
   </nav>
-    <div  class="page-home">
-   
+    <div  class="page-home">  
       <header>
         
           <section class="jumbotron " id="#home">
@@ -66,10 +65,19 @@
         </section>
       </header>
       <main>
-        <a href="{{route('ocorrencia.create')}}" id="ocorrenciaButton" class="mt-4 btn btn-outline-primary">Adicionar Ocorrência</a>
+        <div class="d-flex flex-wrap justify-content-around">
+          <a href="{{route('ocorrencia.create')}}" id="ocorrenciaButtonAdd" class="mt-4 btn btn-success ocorrenciaButton">Adicionar Ocorrência</a>
+          <button onclick="showEditButton()" class="mt-4 btn btn-warning ocorrenciaButton" id="editBtn" data-edit="0">Editar Ocorrência</button>
+          <button onclick="showDelButton()" class="mt-4 btn btn-danger ocorrenciaButton" id="deleteBtn" data-del="0">Deletar Ocorrências</button>
+        </div>
         <section class="cards">
           @foreach ($ocorrencias as $ocorrencia)
           <div class="card">
+            <!-- Botão para editar uma ocorrência -->
+            <a class="ocorrenciaEditButton mb-4" href="{{route('ocorrencia.edit',['id'=>$ocorrencia->id])}}" title="Editar {{$ocorrencia->titulo_ocorrencia}}" style="display: none; color: #ffc107; cursor: pointer;"><i class="fa-solid fa-pen"></i></a>
+            <!-- Botão para deletar uma ocorrência -->
+            <a class="ocorrenciaDelButton mb-4" data-bs-toggle="modal" data-bs-target="#del{{$ocorrencia->id}}" title="Deletar {{$ocorrencia->titulo_ocorrencia}}" style="display: none; color: #dc3545; cursor: pointer;"><i class="fa-solid fa-trash"></i></a>
+
             <a data-bs-toggle="modal"  role="button" href="{{'#ocorrencia'.$ocorrencia->id}}" >
               <div class="imgCard">
                 <img class="d-block m-l-r borda " src="{{URL::asset('imgConteudo/envenenamento.png')}}"  alt="Imagem de capa do card" > 
@@ -101,14 +109,102 @@
             </div>
           </div>
         </div>
-      </div> 
+      </div>
+
+      <div data-modal="modais-delete">
+        <div class="modal fade" id="del{{$ocorrencia->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Deletar ocorrência de {{$ocorrencia->titulo_ocorrencia}} !</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Você tem certeza que deseja deletar esta ocorrência?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a href="{{route('ocorrencia.delete',['id'=>$ocorrencia->id])}}" class="btn btn-primary">Deletar</a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
       @endforeach
     </section>
-    @push('scripts')
+
+    
+  @endsection
+
+  @push('scripts')
     @if(session('tutor')!=null && session('tutor')!='' )                  
       <script> 
-        document.getElementById("ocorrenciaButton").style.display = "block";
+        var crudButtons = document.getElementsByClassName("ocorrenciaButton");
+        const editButton = document.getElementsByClassName("ocorrenciaEditButton");
+        const delButton = document.getElementsByClassName("ocorrenciaDelButton");
+        const textEditButton = "Editar Ocorrência";
+        const textDelButton = "Deletar Ocorrência";
+        for(let i = 0; i < crudButtons.length; i++){
+          crudButtons[i].style.display = "block";
+        }
+
+        //função para a chamada da função que exibirá os botões de editar nos cards
+        function showEditButton(){
+          changeStateEditButton();
+        }
+
+        //função para a chamada da função que exibirá os botões de editar nos cards
+        function showDelButton(){
+          changeStateDelButton();
+        }
+
+        //Muda os estados dos botões, quando clicado pela primeira vez, mostras os botões em cada card, quando clicado novamente, esconde eles.
+        function changeStateEditButton(){
+          var dataEdit = crudButtons[1].getAttribute("data-edit");
+          if(dataEdit === "1"){
+            crudButtons[1].setAttribute("data-edit","0");
+            crudButtons[1].classList.replace("btn-info", "btn-warning");
+            crudButtons[1].textContent = textEditButton;
+            crudButtons[2].style = "display:block";
+            for(let i = 0; i < editButton.length; i++){
+              editButton[i].style.display = "none";
+            }
+          }
+          else{
+            crudButtons[2].style = "display:none";
+            crudButtons[1].classList.replace("btn-warning", "btn-info");
+            crudButtons[1].textContent = "Concluir Edições";
+            crudButtons[1].setAttribute("data-edit","1");
+            for(let i = 0; i < editButton.length; i++){
+              editButton[i].style.display = "flex";
+            }
+          }
+        }
+
+        //Muda os estados dos botões, quando clicado pela primeira vez, mostras os botões em cada card, quando clicado novamente, esconde eles.
+        function changeStateDelButton(){
+          var dataDel = crudButtons[2].getAttribute("data-del");
+          if(dataDel === "1"){
+            crudButtons[2].setAttribute("data-del","0");
+            crudButtons[2].classList.replace("btn-info", "btn-danger");
+            crudButtons[2].textContent = textDelButton;
+            crudButtons[1].style = "display:block";
+            for(let i = 0; i < delButton.length; i++){
+              delButton[i].style.display = "none";
+            }
+          }
+          else{
+            crudButtons[1].style = "display:none";
+            crudButtons[2].classList.replace("btn-danger", "btn-info");
+            crudButtons[2].textContent = "Concluir Deleções";
+            crudButtons[2].setAttribute("data-del","1");
+            for(let i = 0; i < delButton.length; i++){
+              delButton[i].style.display = "flex";
+            }
+          }
+        }
+
+        
       </script>
      @endif
      @endpush
-  @endsection
