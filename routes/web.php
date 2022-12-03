@@ -62,6 +62,9 @@ Route::prefix('ocorrencia')->group(function(){
     Route::get('', [OcorrenciaController::class, 'index'])->name('ocorrencia.index');
     Route::get('/create', [OcorrenciaController::class, 'create'])->name('ocorrencia.create');
     Route::post('/store', [OcorrenciaController::class, 'store'])->name('ocorrencia.store');
+    Route::get('/{id}/delete',[OcorrenciaController::class,'destroy'])->name('ocorrencia.delete');
+    Route::get('/{id}/edit',[OcorrenciaController::class,'edit'])->name('ocorrencia.edit');
+    Route::post('/{id}/update',[OcorrenciaController::class,'update'])->name('ocorrencia.update');
 });
 
 

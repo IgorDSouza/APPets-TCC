@@ -20,23 +20,29 @@ class CadastroController extends Controller
 
 
     public function storeTutor(Request $request){  
-        $senha1=$request->senha;
-        $senha2=$request->senhaConfirma;
 
-    if($senha2 == $senha1){
-        $usuario = new Usuario;
-        $usuario->login = $request->usuario;
-        $usuario->email = $request->email;
-        $usuario->senha = md5($request->senha);
-        $usuario->save();
-        echo '<script> window.alert("Cadastrado com sucesso")</script>';  
+        $validacao = DB::table('usuarios')->where('login', $request->usuario )->first();
+        if($validacao != null){
+            $erro = 'usuario ja existente';
+            return redirect()->route('site.home',['erro'=>$erro]);
 
-   }else{
+        }else{
+                $senha1=$request->senha;
+                $senha2=$request->senhaConfirma;
+            if($senha2 == $senha1){
+                $usuario = new Usuario;
+                $usuario->login = $request->usuario;
+                $usuario->email = $request->email;
+                $usuario->senha = md5($request->senha);
+                $usuario->save();
+                echo '<script> window.alert("Cadastrado com sucesso")</script>';  
 
-    echo '<script> window.alert("As senhas não coincidem")</script>';
-    }
+                }else{
 
-    return view('site.home');
+                echo '<script> window.alert("As senhas não coincidem")</script>';
+                }
+        }
+    return redirect()->route('site.home');
 
     }
 
@@ -104,7 +110,7 @@ class CadastroController extends Controller
         session(['foto'=>$validacao->foto]);
 
               
-        return view('site.home');
+        return redirect()->route('site.home');
     }
 
 

@@ -67,6 +67,9 @@
           <h1 class="margin-30-top-bottom pteb-20  ">Principais Ocorrências</h1>
           
       </div>
+      <section class="cards">
+      @include('site.principaisOcorrencias')
+</section>
         
         <section class="cards">
           <!-- @include('site.principaisOcorrencias')
