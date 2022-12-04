@@ -29,7 +29,7 @@ Route::post('/storeimg', [CadastroController::class, 'storeimg']);
 
 Route::post('/addInfo', [CadastroController::class, 'addInfo']);
 
-Route::post('/storePet', [CadastroController::class, 'storePet'])->name('site.storePet');
+Route::post('/storePet/{?id}', [CadastroController::class, 'storePet'])->name('site.storePet');
 
 Route::get('/logout', [CadastroController::class,'logout'])->name('site.logout');
 
@@ -64,11 +64,12 @@ Route::prefix('pet')->group(function(){
 
     Route::post('{id}/agenda/storeCompromisso', [PetController::class, 'storeCompromisso']);
 
-    Route::get('{idPet}/deleteCompromisso/{id}', [PetController::class, 'deleteCompromisso']);
+    Route::get('{idPet}/agenda/deleteCompromisso/{id}', [PetController::class, 'deleteCompromisso']);
     
-    Route::post('{idPet}/editCompromisso/{id}', [PetController::class, 'editCompromisso']);
+    Route::post('{idPet}/agenda/editCompromisso/{id}', [PetController::class, 'editCompromisso']);
 
 
+    Route::post('{id}/informacoes/storePet/{Petid}', [CadastroController::class, 'storePet'])->name('site.storePet');
 
 });
 

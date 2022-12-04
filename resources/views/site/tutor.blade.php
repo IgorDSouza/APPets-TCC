@@ -28,7 +28,10 @@
           " id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{route('site.home')}}">Inicio</a>
+                <a class="nav-link" aria-current="page" href="{{route('site.home')}}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#inicio">Inicio</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#pets">Pets</a>
@@ -45,7 +48,7 @@
           </div>
         </div>
       </nav>
-    <div class="tutorInfo" >
+    <div class="tutorInfo" id="#inicio" >
         <img class="circleImg" src="../imgUsuario/usuarios/{{session('foto')}}" alt="IMAGEM TUTOR">
 
         <div>
@@ -78,7 +81,7 @@
         @endif
       @endisset
 </section>
-      <div onclick="addPetForm()" id="plus" style="font-size:30px">+</div>
+      <div onclick="addPetForm()" id="plus" role="button" >+Pet</div>
       
       <form id="addPet" method="post" action="/storePet" enctype="multipart/form-data">
                   @csrf
@@ -110,7 +113,7 @@
           @foreach($agenda as $compromissos)
               @foreach($compromissos as $compromisso)
 
-                  <div style="width:100%; font-size:25px"><strong>Pet:</strong> {{$compromisso->nome}}<strong>&nbsp;&nbsp;&nbsp;&nbsp;Compromisso:</strong> {{$compromisso->compromisso}}<strong>&nbsp;&nbsp;&nbsp;&nbsp;Data:</strong> {{$compromisso->data}}<strong>&nbsp;&nbsp;&nbsp;&nbsp;Hora:</strong> {{$compromisso->hora}}</div><br>
+                  <div style="width:100%; font-size:18px; text-align:center;">&nbsp;&nbsp;<strong>Pet:</strong> {{$compromisso->nome}}<strong>&nbsp;&nbsp;&nbsp;&nbsp;Compromisso:</strong> {{$compromisso->compromisso}}<strong>&nbsp;&nbsp;&nbsp;&nbsp;Data:</strong> {{$compromisso->data}}<strong>&nbsp;&nbsp;&nbsp;&nbsp;Hora:</strong> {{$compromisso->hora}}</div><br>
 
               @endforeach
           @endforeach

@@ -24,8 +24,8 @@ class PetController extends Controller
 
         $pet = Pet::find($id);
 
-        
-        $remedios = DB::table('remedio')
+        if($rota == 'remedio'){
+            $remedios = DB::table('remedio')
         ->join('pet', 'remedio.animal_id', '=' , 'pet.id')->where('pet.id',$pet->id)
         ->select('remedio.id','remedio.nome','remedio.dosagem','remedio.periodo')->get();
 
@@ -34,8 +34,30 @@ class PetController extends Controller
         ->join('pet', 'cuidado.animal_id', '=' , 'pet.id')->where('pet.id',$pet->id)
         ->select('cuidado.id','cuidado.observacao')->get();
 
+        $retorno = view('site.pet',["remedios"=>$remedios, "cuidados"=>$cuidados, "pet"=>$pet,"rota"=>$rota]);
+        }
 
-        return view('site.pet',["remedios"=>$remedios, "cuidados"=>$cuidados, "pet"=>$pet,"rota"=>$rota]);
+        else if($rota == 'agenda'){
+            $compromissos = DB::table('comprimisso')
+            ->join('pet', 'comprimisso.animal_id', '=' , 'pet.id')->where('pet.id',$pet->id)
+            ->select('comprimisso.id','comprimisso.compromisso','comprimisso.data','comprimisso.hora','comprimisso.nota','pet.nome')->limit(10)->get();
+
+            
+       
+           $retorno = view('site.pet',["pet"=>$pet,"rota"=>'agenda',"compromissos"=>$compromissos]);
+        }
+        else if($rota == 'informacoes'){
+          
+           $retorno = view('site.pet',["pet"=>$pet,"rota"=>'informacoes']);
+        }
+
+
+        
+                    return $retorno;
+
+
+
+        
 
     }
 
@@ -117,21 +139,6 @@ class PetController extends Controller
     }
 //----------------------------Agenda---------------------------------------------------------------------
 
-public function agenda($id){
-
-    dd($id);
-
-    $pet = Pet::find($id);
-
-    $compromissos = DB::table('comprimisso')
-     ->join('pet', 'comprimisso.animal_id', '=' , 'pet.id')->where('pet.id',$pet->id)
-     ->select('comprimisso.compromisso','comprimisso.data','comprimisso.hora','comprimisso.nota','pet.nome')->limit(1)->get();
-
-
-    return view('site.pet',["pet"=>$pet,"rota"=>'agenda',"compromisso"=>$compromissos]);
-
-}
-
 public function storeCompromisso(Request $request, $id){
 
     $compromisso = new Compromisso;
@@ -149,8 +156,7 @@ public function storeCompromisso(Request $request, $id){
 }
 public function deleteCompromisso(Request $request, $idPet, $id){
         
-    $compromisso = Cuidado::find($id);
-
+    $compromisso = Compromisso::find($id);
 
     $compromisso->delete();
 
@@ -161,7 +167,7 @@ public function editCompromisso(Request $request, $idPet, $id){
         
     $compromisso = Compromisso::find($id);
 
-    $compromisso->animal_id = $id;
+    $compromisso->animal_id = $idPet;
     $compromisso->data = $request->data;
     $compromisso->hora = $request->hora;
     $compromisso->nota = $request->nota;

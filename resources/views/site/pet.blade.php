@@ -16,7 +16,7 @@
     <title>Area Tutor</title>
 @endpush
 @section('content')
-    <div style="backdrop-filter:brightness(0.8)">
+    <div id='home' style="backdrop-filter:brightness(0.8)">
 
     <nav class="navbar navbar-expand-lg sticky-top "> 
         <div class="container-fluid">
@@ -29,13 +29,22 @@
           " id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#home">Home</a>
+                <a class="nav-link" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#pets">Pets</a>
+                <a class="nav-link " href="/tutor">Area Tutor</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="#agenda">Area Tutor</a>
+                <a class="nav-link" href="#home">Pet</a>
+              </li>
+              
+              <li class="nav-item">
+              <a class="nav-link" id="linkdrop" role="button" onclick="dropdown()">Tópicos <span style="font-size:15px; color:black;">⛛ </span>  </a>
+              <div id='topicos'>
+
+              </div>
+
+
               </li>
 
             </ul>
@@ -44,7 +53,7 @@
           </div>
         </div>
       </nav>
-    <div style="text-align: center;">
+    <div  style="text-align: center;">
         <img class="circleImg" src="/imgUsuario/pets/{{$pet->foto}}" alt="IMAGEM PET">
         <div>         
             <H1 >{{ $pet->nome }}</H1>
@@ -54,7 +63,7 @@
         <div class="links">
             <a href="remedio">Remédios e Cuidados</a>
             <a href="agenda">Agenda Pet</a> 
-            <a href="">Informações Pet</a> 
+            <a href="informacoes">Informações Pet</a> 
             <a href="">Ferramentas</a> 
 
         </div>
@@ -62,14 +71,18 @@
    </div>
    <div class="d-flex justify-content-center">   
 
-        <div class="compromissos">
+        <div id="quadro" class="compromissos">
           @if($rota=="remedio")
 
-          @include('site.pets.remedioseCuidados');
+          @include('site.pets.remedioseCuidados')
 
           @elseif($rota=="agenda")
 
           @include('site.pets.agenda')
+
+          @elseif($rota=="informacoes")
+
+          @include('site.pets.informacoes')
 
           @endif
 
@@ -157,7 +170,7 @@
                       <label for="hora"> informe a Hora</label><br>
                       <input type="time" name="hora" required><br>
                       <label for="nota"> Alguma observação?</label><br>
-                      <input type="text" name="nota" required><br>
+                      <input type="text" name="nota" ><br>
                       <input type="submit"  value="Adicionar Compromisso" class="btn-primary p10lr" style="margin-bottom: 10px;">
                   </form>
               </div>
@@ -165,5 +178,26 @@
     </div>
   </div>
 </div>
-@endsection
+@push('scripts')
 
+    <script> 
+     
+
+      function dropdown(){ 
+      var topicos=document.getElementById('topicos'); 
+      
+        if(topicos.innerHTML != "" ){
+        topicos.innerHTML = "";
+      }else{
+        topicos.innerHTML="<a class='nav-link' href='remedio' >Remedios e Cuidados</a> <a class='nav-link' href='agenda' >Agenda</a> <a class='nav-link' href='informacoes' >Informações do pet</a> ";
+      }
+    }
+
+      
+
+    </script>
+
+@endpush
+
+
+@endsection
