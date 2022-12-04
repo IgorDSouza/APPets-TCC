@@ -178,5 +178,36 @@ public function editCompromisso(Request $request, $idPet, $id){
     return redirect()->route('site.pet',['id'=>$idPet, "rota"=>'agenda']);
 
 }
+
+public function updatePet(Request $request,$id ){
+       
+    $pet = Pet::find($id);
+
+$pet->tutor_id = session('id');
+$pet->nome = $request->nome;
+$pet->idade = $request->dataNascto;
+$pet->raca = $request->raca;
+$pet->altura = $request->altura;
+$pet->comprimento = $request->comprimento;
+$pet->peso = $request->peso;
+
+
+if($request->hasFile('foto') && $request->file('foto')->isValid()){
+
+    $requestImage= $request->foto;
+
+    $extension = $requestImage->extension();
+
+    $imageName = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extension;
+
+    $requestImage->move(public_path("imgUsuario/pets"),$imageName);
+    
+    $pet->foto = $imageName;
+}
+
+$pet->save();
+
+return redirect()->route('site.tutor',session('id'));
+}
 }
     

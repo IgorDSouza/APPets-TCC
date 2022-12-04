@@ -29,7 +29,7 @@ Route::post('/storeimg', [CadastroController::class, 'storeimg']);
 
 Route::post('/addInfo', [CadastroController::class, 'addInfo']);
 
-Route::post('/storePet/{?id}', [CadastroController::class, 'storePet'])->name('site.storePet');
+Route::post('/storePet', [CadastroController::class, 'storePet'])->name('site.storePet');
 
 Route::get('/logout', [CadastroController::class,'logout'])->name('site.logout');
 
@@ -68,8 +68,9 @@ Route::prefix('pet')->group(function(){
     
     Route::post('{idPet}/agenda/editCompromisso/{id}', [PetController::class, 'editCompromisso']);
 
+//----------------------------informacoes---------------------------------------------------------------------
 
-    Route::post('{id}/informacoes/storePet/{Petid}', [CadastroController::class, 'storePet'])->name('site.storePet');
+    Route::post('{id}/informacoes/updatePet/', [PetController::class, 'updatePet']);
 
 });
 

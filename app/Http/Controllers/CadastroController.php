@@ -139,13 +139,9 @@ class CadastroController extends Controller
         return view('site.tutor',['pets'=>$pets,'agenda'=>$agenda]);
     }
 
-    public function storePet(Request $request,$id,$Petid ){
-        $pet='';
-        if($Petid != null){
-            $pet = Pet::find($id);
-        }else{
+    public function storePet(Request $request){
+       
             $pet = new Pet;
-        }
         
         $pet->tutor_id = session('id');
         $pet->nome = $request->nome;

@@ -48,7 +48,7 @@
           </div>
         </div>
       </nav>
-    <div class="tutorInfo" id="#inicio" >
+    <div class="tutorInfo" id=#inicio >
         <img class="circleImg" src="../imgUsuario/usuarios/{{session('foto')}}" alt="IMAGEM TUTOR">
 
         <div>
@@ -81,9 +81,9 @@
         @endif
       @endisset
 </section>
-      <div onclick="addPetForm()" id="plus" role="button" >+Pet</div>
+      <div onclick="addPetForm()" id="plus" role="button">+Pet</div>
       
-      <form id="addPet" method="post" action="/storePet" enctype="multipart/form-data">
+      <form id="addPet" method="post" action="/storePet " enctype="multipart/form-data">
                   @csrf
                   <label for="usuario"> Nome</label>
                       <input type="text" name="nome" required/>
