@@ -1,5 +1,5 @@
 body{
-    background-image: url(../img/imgHome/bg3-3.jpg);
+    background-image: url(../imgHome/bg3-3.jpg);
     background-position: center;
 }
 .navbar{
@@ -77,6 +77,17 @@ form{
     font-size: 30px;
 
 }
+#plus{
+      
+    border-radius: 10px;
+     background-color: #447e605c !important;
+     display: flex !important;
+     align-items: center !important;
+     justify-content: center !important;
+     border: 1px black solid !important;
+     width:60px;
+     height:60px;
+ }
 @media (max-width:295px) {
     .circleImg{
         width: 100px;

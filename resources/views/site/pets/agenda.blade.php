@@ -6,11 +6,11 @@
              <strong>&nbsp;Compromisso</strong> {{$compromisso->compromisso}}             
              <strong>&nbsp;&nbsp;Data</strong> {{$compromisso->data}}
              <strong>&nbsp;&nbsp;Hora</strong> {{$compromisso->hora}}
-             <strong>&nbsp;&nbsp;Nota</strong> {{$compromisso->nota}} 
-             <div class="botoesAlterEx">
-             <a role="button" href="agenda/deleteCompromisso/{{$compromisso->id}}">Excluir</a>
-               <a  role="button" onclick="alterarCompromisso();">Alterar</a>
-            </div>
+             <strong>&nbsp;&nbsp;Nota</strong> {{$compromisso->nota}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             
+             <a class="ocorrenciaDelButton mb-4" href="agenda/deleteCompromisso/{{$compromisso->id}}" style=" color: #dc3545; cursor: pointer;"><i class="fa-solid fa-trash"></i></a>&nbsp;&nbsp;
+
+             <a class="ocorrenciaEditButton mb-4" onclick="alterarCompromisso();" style=" color: #ffc107; cursor: pointer;"><i class="fa-solid fa-pen"></i></a>      
             </p><br>
            <div id="alterCompromisso" class="alter"></div>
 

@@ -29,13 +29,20 @@ class PetController extends Controller
         ->join('pet', 'remedio.animal_id', '=' , 'pet.id')->where('pet.id',$pet->id)
         ->select('remedio.id','remedio.nome','remedio.dosagem','remedio.periodo')->get();
 
+        $retorno = view('site.pet',["remedios"=>$remedios,"pet"=>$pet,"rota"=>$rota]);
+        }
+
+       else if($rota == 'cuidados'){
+
 
         $cuidados = DB::table('cuidado')
         ->join('pet', 'cuidado.animal_id', '=' , 'pet.id')->where('pet.id',$pet->id)
         ->select('cuidado.id','cuidado.observacao')->get();
 
-        $retorno = view('site.pet',["remedios"=>$remedios, "cuidados"=>$cuidados, "pet"=>$pet,"rota"=>$rota]);
+        $retorno = view('site.pet',["cuidados"=>$cuidados, "pet"=>$pet, "rota"=>'cuidados']);
+
         }
+        
 
         else if($rota == 'agenda'){
             $compromissos = DB::table('comprimisso')
@@ -45,7 +52,9 @@ class PetController extends Controller
             
        
            $retorno = view('site.pet',["pet"=>$pet,"rota"=>'agenda',"compromissos"=>$compromissos]);
+
         }
+
         else if($rota == 'informacoes'){
           
            $retorno = view('site.pet',["pet"=>$pet,"rota"=>'informacoes']);
@@ -53,13 +62,21 @@ class PetController extends Controller
 
 
         
-                    return $retorno;
-
-
-
-        
+                    return $retorno;  
 
     }
+
+    public function deletePet(Request $request, $id){
+        $pet = Pet::find($id);
+
+        $pet->delete();
+
+        return redirect()->route('site.tutor');
+
+
+
+    }
+
 
     public function storeRemedio(Request $request, $id){
         
@@ -111,7 +128,7 @@ class PetController extends Controller
         $cuidado->observacao = $request->cuidado;
         $cuidado->save();
 
-        return redirect()->route('site.pet',['id'=>$id, "rota"=>'remedio']);
+        return redirect()->route('site.pet',['id'=>$id, "rota"=>'cuidados']);
 
     }
     public function deleteCuidado(Request $request, $idPet, $id){
@@ -121,7 +138,7 @@ class PetController extends Controller
 
         $cuidado->delete();
 
-        return redirect()->route('site.pet',['id'=>$idPet, "rota"=>'remedio']);
+        return redirect()->route('site.pet',['id'=>$idPet, "rota"=>'cuidados']);
 
     }
 
@@ -134,7 +151,7 @@ class PetController extends Controller
         $cuidado->save();
 
 
-        return redirect()->route('site.pet',['id'=>$idPet, "rota"=>'remedio']);
+        return redirect()->route('site.pet',['id'=>$idPet, "rota"=>'cuidados']);
 
     }
 //----------------------------Agenda---------------------------------------------------------------------

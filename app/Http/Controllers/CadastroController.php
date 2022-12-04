@@ -167,7 +167,7 @@ class CadastroController extends Controller
 
         $pet->save();
 
-        return redirect()->route('site.tutor',session('id'));
+        return redirect()->route('site.tutor');
     }
 
 

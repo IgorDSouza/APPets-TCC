@@ -1,4 +1,5 @@
         <h3>Informações do Pet</h3>
+        <div id="alterInfo" class="alter"></div>
         <p style="font-size:20px">
              <strong>Nome</strong> {{$pet->nome}}<br>   
              <strong>Data de Nascimento</strong> {{$pet->idade}}<br>
@@ -6,11 +7,10 @@
              <strong>Altura</strong> {{$pet->altura}}<br> 
              <strong>Comprimento</strong> {{$pet->comprimento}}<br> 
              <strong>Peso</strong> {{$pet->peso}}
-             <div class="botoesAlterEx">
-               <a  role="button" onclick="alterarInfo();">Alterar</a>
-            </div>
-            </p>
-           <div id="alterInfo" class="alter"></div>
+
+             <br><br><a class="ocorrenciaEditButton mb-4" onclick="alterarInfo();" style=" color: #ffc107; cursor: pointer;"><i class="fa-solid fa-pen"></i></a>      
+</p>
+           
     @push('scripts')
   <script> 
   function alterarInfo(){

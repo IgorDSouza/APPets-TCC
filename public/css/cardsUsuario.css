@@ -38,14 +38,4 @@
       display: none;
       margin: 20px;
     }
-    #plus{
-      
-       border-radius: 10px;
-        background-color: #447e605c !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        border: 1px black solid !important;
-        width:40px;
-        height:40px;
-    }
+   

@@ -61,10 +61,10 @@
    </div>
    <div class="topicos">
         <div class="links">
-            <a href="remedio">Remédios e Cuidados</a>
+            <a href="remedio">Remédios</a>
+            <a href="cuidados">Cuidados</a>
             <a href="agenda">Agenda Pet</a> 
             <a href="informacoes">Informações Pet</a> 
-            <a href="">Ferramentas</a> 
 
         </div>
     
@@ -74,15 +74,19 @@
         <div id="quadro" class="compromissos">
           @if($rota=="remedio")
 
-          @include('site.pets.remedioseCuidados')
+             @include('site.pets.remedios')
 
           @elseif($rota=="agenda")
 
-          @include('site.pets.agenda')
+              @include('site.pets.agenda')
 
           @elseif($rota=="informacoes")
 
-          @include('site.pets.informacoes')
+             @include('site.pets.informacoes')
+
+          @elseif($rota=="cuidados")
+
+              @include('site.pets.cuidados')
 
           @endif
 
@@ -124,8 +128,7 @@
                       <input type="number" name="dosagem" required><br>
                       <label for="periodo">Periodo</label><br>
                       <input type="text" name="periodo" required><br>
-                      <input type="submit"  value="Adicionar Remedio" class="btn-primary p10lr" style="margin-bottom: 10px;">
-                      <input type="button" value="Cuidados" class=" btn-primary p10lr" data-bs-target="#storeCuidado" data-bs-toggle="modal" data-bs-dismiss="modal">           
+                      <input type="submit"  value="Adicionar Remedio" class="btn-primary p10lr" style="margin-bottom: 10px;">        
                   </form>
               </div>
       </div>
@@ -139,13 +142,12 @@
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       <div id="form"> 
                   <img src="/imgUsuario/pets/iconeCuidados.png" alt ="icone appets">
-                  <form method="post" action='remedio/storeCuidado'>
+                  <form method="post" action='cuidados/storeCuidado'>
                   @csrf 
                   <h3>Cuidados</h3>
                   <label for="cuidado"> Descreva o Cuidado Especial</label><br>
                       <input type="text" name="cuidado" required><br>
-                      <input type="submit"  value="Adicionar Cuidado" class="btn-primary p10lr" style="margin-bottom: 10px;">
-                      <input type="button" value="Remedios" class=" btn-primary p10lr" data-bs-target="#storeRemedio" data-bs-toggle="modal" data-bs-dismiss="modal">           
+                      <input type="submit"  value="Adicionar Cuidado" class="btn-primary p10lr" style="margin-bottom: 10px;">        
                   </form>
               </div>
       </div>
@@ -189,7 +191,7 @@
         if(topicos.innerHTML != "" ){
         topicos.innerHTML = "";
       }else{
-        topicos.innerHTML="<a class='nav-link' href='remedio' >Remedios e Cuidados</a> <a class='nav-link' href='agenda' >Agenda</a> <a class='nav-link' href='informacoes' >Informações do pet</a> ";
+        topicos.innerHTML="<a class='nav-link' href='remedio' >Remedios</a><a class='nav-link' href='cuidados' >Cuidados</a> <a class='nav-link' href='agenda' >Agenda</a> <a class='nav-link' href='informacoes' >Informações do pet</a> ";
       }
     }
 
