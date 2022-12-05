@@ -177,10 +177,10 @@
                       <input type="email" name="email" required><br>
                       <label for="usuario"> Usuário</label><br>
                       <input type="text" name="usuario" required><br>
-                      <label for="senha">Senha</label><br>
+                      <label for="senha" >Senha</label><br>
                       <input type="password" name="senha" required><br>
-                      <label for="senha">Confirmação Senha</label><br>
-                      <input type="password" name="senhaConfirma" required><br><br>
+                      <label for="senha" >Confirmação Senha</label><br>
+                      <input type="password"  name="senhaConfirma" required><br><br>
                       <input type="submit"  value="Cadastrar-se" class="btn-primary p10lr" style="margin-bottom: 10px;">
                       <input type="button" value="Voltar ao login" class=" btn-primary p10lr" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">
                       

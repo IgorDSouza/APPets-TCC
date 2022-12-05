@@ -1,5 +1,5 @@
 body{
-    background-image: url(../img/imgHome/bg3-3.jpg);
+    background-image: url(../imgHome/bg3-3.jpg);
     background-position: center;
 }
 .navbar{
@@ -49,7 +49,7 @@ a.nav-link:hover{
 }
 
 .compromissos{
-    width: 50%;
+    width: 70%;
     height: 100%;
     text-align: center;
     background-color:  #8cf0bc5c;
@@ -73,14 +73,8 @@ a.nav-link:hover{
     position: relative;
 
 }
-.botoesAlterEx a{
-    text-decoration: none;
-    color: #447e60 !important;
-}
-.botoesAlterEx a:hover{
-    color: #254635 !important;
 
-}
+
 @media (min-width:260px) and (max-width:300px){
    .links{
     width: 100%;

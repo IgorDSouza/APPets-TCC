@@ -37,11 +37,13 @@ Route::post('/login', [CadastroController::class, 'login']);
 
 Route::get('/tutor/{id?}', [CadastroController::class, 'tutor'])->name('site.tutor');
 
+    Route::get('{id}/deletePet', [PetController::class, 'deletePet']);
 
-Route::prefix('pet')->group(function(){
-    //----------------------------Remedios------------------------------------------------------------------
-
+    Route::prefix('pet')->group(function(){
+   
     Route::get('/{id?}/{rota}', [PetController::class, 'pet'])->name('site.pet');
+
+ //----------------------------Remedios------------------------------------------------------------------
 
     Route::post('{id}/remedio/storeRemedio', [PetController::class, 'storeRemedio']);
 
@@ -51,11 +53,11 @@ Route::prefix('pet')->group(function(){
 
 //----------------------------Cuidados---------------------------------------------------------------------
 
-    Route::post('{id}/remedio/storeCuidado', [PetController::class, 'storeCuidado']);
+    Route::post('{id}/cuidados/storeCuidado', [PetController::class, 'storeCuidado']);
 
-    Route::get('{idPet}/remedio/deleteCuidado/{id}', [PetController::class, 'deleteCuidado']);
+    Route::get('{idPet}/cuidados/deleteCuidado/{id}', [PetController::class, 'deleteCuidado']);
     
-    Route::post('{idPet}/remedio/editCuidado/{id}', [PetController::class, 'editCuidado']);
+    Route::post('{idPet}/cuidados/editCuidado/{id}', [PetController::class, 'editCuidado']);
 
 //----------------------------Agenda---------------------------------------------------------------------
 
@@ -64,11 +66,13 @@ Route::prefix('pet')->group(function(){
 
     Route::post('{id}/agenda/storeCompromisso', [PetController::class, 'storeCompromisso']);
 
-    Route::get('{idPet}/deleteCompromisso/{id}', [PetController::class, 'deleteCompromisso']);
+    Route::get('{idPet}/agenda/deleteCompromisso/{id}', [PetController::class, 'deleteCompromisso']);
     
-    Route::post('{idPet}/editCompromisso/{id}', [PetController::class, 'editCompromisso']);
+    Route::post('{idPet}/agenda/editCompromisso/{id}', [PetController::class, 'editCompromisso']);
 
+//----------------------------informacoes---------------------------------------------------------------------
 
+    Route::post('{id}/informacoes/updatePet/', [PetController::class, 'updatePet']);
 
 });
 

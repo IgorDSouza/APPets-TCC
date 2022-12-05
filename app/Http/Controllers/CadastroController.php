@@ -128,8 +128,8 @@ class CadastroController extends Controller
         foreach($pets as $pet){
 
         $compromissos = DB::table('comprimisso')
-         ->join('pet', 'comprimisso.animal_id', '=' , 'pet.id')->where('pet.id',$pet->id)
-         ->select('comprimisso.compromisso','comprimisso.data','comprimisso.hora','comprimisso.nota','pet.nome')->limit(1)->get();
+         ->join('pet', 'comprimisso.animal_id', '=' , 'pet.id')->where('pet.id',$pet->id )->where('comprimisso.data','>=',getdate())
+         ->select('comprimisso.compromisso','comprimisso.data','comprimisso.hora','comprimisso.nota','pet.nome')->limit(2)->get();
 
             array_push($agenda,$compromissos);
 
@@ -140,14 +140,18 @@ class CadastroController extends Controller
         return view('site.tutor',['pets'=>$pets,'agenda'=>$agenda]);
     }
 
-    public function storePet(Request $request ){
-        $pet = new Pet;
+    public function storePet(Request $request){
+       
+            $pet = new Pet;
+        
         $pet->tutor_id = session('id');
         $pet->nome = $request->nome;
         $pet->idade = $request->dataNascto;
         $pet->raca = $request->raca;
         $pet->altura = $request->altura;
         $pet->comprimento = $request->comprimento;
+        $pet->peso = $request->peso;
+
 
         if($request->hasFile('foto') && $request->file('foto')->isValid()){
 
@@ -164,7 +168,7 @@ class CadastroController extends Controller
 
         $pet->save();
 
-        return redirect()->route('site.tutor',session('id'));
+        return redirect()->route('site.tutor');
     }
 
 

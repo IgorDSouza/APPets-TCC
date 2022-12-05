@@ -28,7 +28,10 @@
           " id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{route('site.home')}}">Inicio</a>
+                <a class="nav-link" aria-current="page" href="{{route('site.home')}}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#inicio">Inicio</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#pets">Pets</a>
@@ -45,17 +48,18 @@
           </div>
         </div>
       </nav>
-    <div class="tutorInfo" >
+    <div class="tutorInfo" id=#inicio >
         <img class="circleImg" src="../imgUsuario/usuarios/{{session('foto')}}" alt="IMAGEM TUTOR">
 
         <div>
-          <a id="select" onclick='showHide()'>+</a>
+        
 
           <div id="alteracoes" style="display:none; background-color: #447e605c;">
             <a class="nav-link" data-bs-toggle="modal" href="#exampleModalToggle" role="button" style="color:black; border:1px solid black; border-radius:10px;" >Alterar Imagem</a>
             <a class="nav-link" data-bs-toggle="modal" href="#exampleModalToggle2" role="button"  style="color:black;border:1px solid black; border-radius:10px;">Adicionar mais informações</a>
-          </div>
+          </div> 
         </div>
+        <a class="ocorrenciaEditButton mb-4" onclick='showHide()' style=" color: green; cursor: pointer;"><i class="fa-solid fa-pen"></i></a>  
         <div class="tutorTitle">         
             <H1 >Ola {{session('tutor');}} </H1>
             <h2>Como estão nossos 'aumigos' hoje?</h2>
@@ -70,18 +74,23 @@
         @foreach($pets as $pet)
         <div class="card">
        
+       
            <a href="/pet/{{$pet->id}}/remedio"><div class="imgCard"><img src="../imgUsuario/pets/{{$pet->foto}}"  alt="Imagem do pet"  > </div> 
           {{$pet->nome}}</a>
-    
+          <div><a class="ocorrenciaDelButton mb-4" href="/{{$pet->id}}/deletePet" style=" color: #dc3545; cursor: pointer; font-size:18px"><i class="fa-solid fa-trash"></i></a>
+
+          <a class="ocorrenciaEditButton mb-4" href="/pet/{{$pet->id}}/informacoes"style=" color: #ffc107; cursor: pointer; font-size:18px"><i class="fa-solid fa-pen"></i></a></div>
         </div>
       @endforeach
         @endif
       @endisset
 </section>
-      <div onclick="addPetForm()" id="plus" style="font-size:30px">+</div>
+      <div onclick="addPetForm()" id="plus" role="button"><img src="../imgUsuario/addPet.png" alt=""></div>
       
-      <form id="addPet" method="post" action="/storePet" enctype="multipart/form-data">
+      
+      <form id="addPet" method="post" action="/storePet " enctype="multipart/form-data">
                   @csrf
+                  <h3>Adicionar novo Pet</h3>
                   <label for="usuario"> Nome</label>
                       <input type="text" name="nome" required/>
                       <label for="dataNascto"> Data Nascimento</label>
@@ -107,14 +116,27 @@
    <div class="d-flex justify-content-center">   
 
         <div class="compromissos">
+        @if($agenda != null)  
+          
+        
           @foreach($agenda as $compromissos)
-              @foreach($compromissos as $compromisso)
+          @if($compromissos->isEmpty())
+          <h3>Nenhum compromisso encontrado!</h3>
+          @endif
 
-                  <div style="width:100%; font-size:25px"><strong>Pet:</strong> {{$compromisso->nome}}<strong>&nbsp;&nbsp;&nbsp;&nbsp;Compromisso:</strong> {{$compromisso->compromisso}}<strong>&nbsp;&nbsp;&nbsp;&nbsp;Data:</strong> {{$compromisso->data}}<strong>&nbsp;&nbsp;&nbsp;&nbsp;Hora:</strong> {{$compromisso->hora}}</div><br>
+              @foreach($compromissos as $compromisso)
+              
+
+
+                  <div style="width:100%; font-size:18px; text-align:center;">&nbsp;&nbsp;<strong>Pet:</strong> {{$compromisso->nome}}<strong>&nbsp;&nbsp;&nbsp;&nbsp;Compromisso:</strong> {{$compromisso->compromisso}}<strong>&nbsp;&nbsp;&nbsp;&nbsp;Data:</strong> {{$compromisso->data}}<strong>&nbsp;&nbsp;&nbsp;&nbsp;Hora:</strong> {{$compromisso->hora}}</div><br>
 
               @endforeach
           @endforeach
-         
+          @else
+
+          <h3>Nenhum compromisso encontrado!</h3>
+          @endif
+          
      </div>
    </div>
 
