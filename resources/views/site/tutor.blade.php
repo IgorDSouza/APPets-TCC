@@ -49,7 +49,7 @@
         </div>
       </nav>
     <div class="tutorInfo" id=#inicio >
-        <img class="circleImg" src="../imgUsuario/usuarios/{{session('foto')}}" alt="IMAGEM TUTOR">
+        <img class="circleImg" src="../imgUsuario/usuarios/@if(session('foto') == null){{"usuariopadrao.png"}}@else{{session('foto')}} @endif" alt="IMAGEM TUTOR">
 
         <div>
         
@@ -153,10 +153,8 @@
       </a>
   
       <ul class="nav">
-        <li class="nav-item"><a href="#home" class="nav-link px-2 ">Home</a></li>
-        <li class="nav-item"><a href="#ps" class="nav-link px-2 ">Principais Ocorrências</a></li>
-        <li class="nav-item"><a href="#maps" class="nav-link px-2 ">Veterinários na Região</a></li>
-        <li class="nav-item"><a data-bs-toggle="modal" href="#exampleModalToggle" role="button" class="nav-link px-2">Login</a></li>
+        <li class="nav-item"><a href="/" class="nav-link px-2 ">Home</a></li>
+        <li class="nav-item"><a href="/ocorrencia/conteudo" class="nav-link px-2 ">Principais Ocorrências</a></li>
         <li class="nav-item"><a href="#" class="nav-link px-2">Sobre</a></li>
       </ul>
     </footer>

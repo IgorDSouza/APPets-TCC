@@ -175,12 +175,12 @@
                   @csrf
                   <label for="usuario"> Email</label><br>
                       <input type="email" name="email" required><br>
-                      <label for="usuario"> Usuário</label><br>
-                      <input type="text" name="usuario" required><br>
+                      <label for="usuario"> Usuário </label><br>
+                      <input type="text" name="usuario" minlength="8" required><br>
                       <label for="senha" >Senha</label><br>
-                      <input type="password" name="senha" required><br>
+                      <input type="password" name="senha"  minlength="8" maxlength="10" required><br>
                       <label for="senha" >Confirmação Senha</label><br>
-                      <input type="password"  name="senhaConfirma" required><br><br>
+                      <input type="password"  name="senhaConfirma" minlength="8" maxlength="10"required><br><br>
                       <input type="submit"  value="Cadastrar-se" class="btn-primary p10lr" style="margin-bottom: 10px;">
                       <input type="button" value="Voltar ao login" class=" btn-primary p10lr" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">
                       
@@ -201,7 +201,7 @@
               </a>
           
               <ul class="nav">
-                <li class="nav-item"><a href="#home" class="nav-link px-2 ">Home</a></li>
+                <li class="nav-item"><a href="/" class="nav-link px-2 ">Home</a></li>
                 <li class="nav-item"><a href="#ps" class="nav-link px-2 ">Principais Ocorrências</a></li>
                 <li class="nav-item"><a href="#maps" class="nav-link px-2 ">Veterinários na Região</a></li>
                 <li class="nav-item"><a data-bs-toggle="modal" href="#exampleModalToggle" role="button" class="nav-link px-2">Login</a></li>

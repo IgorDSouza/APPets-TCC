@@ -224,7 +224,7 @@ if($request->hasFile('foto') && $request->file('foto')->isValid()){
 
 $pet->save();
 
-return redirect()->route('site.tutor',session('id'));
+return redirect()->route('site.pet',['id'=>$id, "rota"=>'informacoes']);
 }
 }
     
