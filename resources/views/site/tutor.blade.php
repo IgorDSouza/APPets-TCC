@@ -61,7 +61,7 @@
         </div>
         <a class="ocorrenciaEditButton mb-4" onclick='showHide()' style=" color: green; cursor: pointer;"><i class="fa-solid fa-pen"></i></a>  
         <div class="tutorTitle">         
-            <H1 >Ola {{session('tutor');}} </H1>
+            <H1 >Olá {{session('tutor');}} </H1>
             <h2>Como estão nossos 'aumigos' hoje?</h2>
         </div>
    </div>
@@ -144,24 +144,25 @@
    
 
    
-   <div>
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3  border-top bgblury">
-      <p class="col-md-4 mb-0">© 2022 Appets</p>
-  
-      <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-      </a>
-  
-      <ul class="nav">
-        <li class="nav-item"><a href="/" class="nav-link px-2 ">Home</a></li>
-        <li class="nav-item"><a href="/ocorrencia/conteudo" class="nav-link px-2 ">Principais Ocorrências</a></li>
-        <li class="nav-item"><a data-bs-toggle="modal" href="#exampleModalToggle" role="button" class="nav-link px-2">Login</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2">Sobre</a></li>
-      </ul>
-    </footer>
+   
+</div>
+<div style="backdrop-filter:brightness(0.8);">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3  border-top bgblury">
+    <p class="col-md-4 mb-0">© 2022 Appets</p>
+
+    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+    </a>
+
+    <ul class="nav">
+      <li class="nav-item"><a href="/" class="nav-link px-2 ">Home</a></li>
+      <li class="nav-item"><a href="/ocorrencia/conteudo" class="nav-link px-2 ">Principais Ocorrências</a></li>
+      <li class="nav-item"><a data-bs-toggle="modal" href="#exampleModalToggle" role="button" class="nav-link px-2">Login</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2">Sobre</a></li>
+    </ul>
+  </footer>
 
 </div>
-</div> 
 
 <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
