@@ -108,6 +108,7 @@ class CadastroController extends Controller
         session(['tutor'=>$validacao->login]);
         session(['id'=>$validacao->id]);
         session(['foto'=>$validacao->foto]);
+        session(['permissao'=>$validacao->permissao]);
 
               
         return redirect()->route('site.home');

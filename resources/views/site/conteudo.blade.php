@@ -65,11 +65,14 @@
         </section>
       </header>
       <main>
-        <div class="d-flex flex-wrap justify-content-around">
-          <a href="{{route('ocorrencia.create')}}" id="ocorrenciaButtonAdd" class="mt-4 btn btn-success ocorrenciaButton">Adicionar Ocorrência</a>
-          <button onclick="showEditButton()" class="mt-4 btn btn-warning ocorrenciaButton" id="editBtn" data-edit="0">Editar Ocorrência</button>
-          <button onclick="showDelButton()" class="mt-4 btn btn-danger ocorrenciaButton" id="deleteBtn" data-del="0">Deletar Ocorrências</button>
-        </div>
+          @if (session("permissao") == "a")
+            <div class="d-flex flex-wrap justify-content-around">
+              <a href="{{route('ocorrencia.create')}}" id="ocorrenciaButtonAdd" class="mt-4 btn btn-success ocorrenciaButton">Adicionar Ocorrência</a>
+              <button onclick="showEditButton()" class="mt-4 btn btn-warning ocorrenciaButton" id="editBtn" data-edit="0">Editar Ocorrência</button>
+              <button onclick="showDelButton()" class="mt-4 btn btn-danger ocorrenciaButton" id="deleteBtn" data-del="0">Deletar Ocorrências</button>
+            </div>
+          @endif
+        
         <section class="cards">
           @foreach ($ocorrencias as $ocorrencia)
           <div class="card">
