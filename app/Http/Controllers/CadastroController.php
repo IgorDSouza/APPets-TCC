@@ -21,10 +21,15 @@ class CadastroController extends Controller
 
     public function storeTutor(Request $request){  
 
-        $validacao = DB::table('usuarios')->where('login', $request->usuario )->first();
-        if($validacao != null){
-            $erro = 'usuario ja existente';
-            return redirect()->route('site.home',['erro'=>$erro]);
+        $validacao1 = DB::table('usuarios')->where('login', $request->usuario )->first();
+
+        $validacao1 = DB::table('usuarios')->where('email', $request->email )->first();
+
+
+        if($validacao1 != null || $validacao2 != null){
+
+            $erro = 'usuario';
+            $retorno = redirect()->route('site.home',['erro'=>$erro]);
 
         }else{
                 $senha1=$request->senha;
@@ -35,14 +40,17 @@ class CadastroController extends Controller
                 $usuario->email = $request->email;
                 $usuario->senha = md5($request->senha);
                 $usuario->save();
-                echo '<script> window.alert("Cadastrado com sucesso")</script>';  
+
+                $retorno = redirect()->route('site.home');
+
 
                 }else{
+                    $erro ='senha';
+                    $retorno = redirect()->route('site.home',['erro'=>$erro]);
 
-                echo '<script> window.alert("As senhas não coincidem")</script>';
                 }
         }
-    return redirect()->route('site.home');
+    return $retorno;
 
     }
 
@@ -60,9 +68,8 @@ class CadastroController extends Controller
         $usuario->numero = $request->numero;
         $usuario->complemento = $request->complemento;
         $usuario->rua = $request->rua;
-
-
         $usuario->save();
+
 
 
 
@@ -105,18 +112,31 @@ class CadastroController extends Controller
         $senhaForm = md5($senhaForm);
         $validacao = DB::table('usuarios')->where('login', $usuarioForm )->where('senha',$senhaForm)->first();
 
-        session(['tutor'=>$validacao->login]);
+        if($validacao == null){
+            
+            $erro ='invalido';
+            $retorno = redirect()->route('site.home',['erro'=>$erro]);
+
+        }else{
+        session(['tutor'=>$validacao->login]);                      
         session(['id'=>$validacao->id]);
         session(['foto'=>$validacao->foto]);
         session(['permissao'=>$validacao->permissao]);
-
+            $retorno = redirect()->route('site.home');
+        }
               
-        return redirect()->route('site.home');
+        return $retorno;
     }
 
 
     public function tutor(){
         
+        $usuario = Usuario::find(session('id'));
+        if($usuario->nome != null){
+            session(['tutor'=>$usuario->nome]);
+
+        }
+
         $pets = DB::table('pet')
         ->join('usuarios', 'pet.tutor_id', '=' , 'usuarios.id')->where('usuarios.id',session('id'))
         ->select('pet.*')->get();

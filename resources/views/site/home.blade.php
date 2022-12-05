@@ -154,7 +154,7 @@
                       <label for="senha">Senha</label><br>
                       <input type="password" name="senha"><br><br>
                       <input type="submit" value="Login" class=" btn-primary p10lr">
-                     <input type="button" value="Cadastre-se" class="btn-primary p10lr" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">
+                     <input type="button" id="Btncadastrar" value="Cadastre-se" class="btn-primary p10lr" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">
                   </form>
               </div>
       </div>
@@ -174,15 +174,15 @@
                   <form method="post" action='/store'>
                   @csrf
                   <label for="usuario"> Email</label><br>
-                      <input type="email" name="email" required><br>
+                      <input type="email" name="email" placeholder="user@email.com"  required><br>
                       <label for="usuario"> Usuário </label><br>
-                      <input type="text" name="usuario" minlength="8" required><br>
+                      <input type="text" name="usuario" placeholder="usuario" required><br>
                       <label for="senha" >Senha</label><br>
-                      <input type="password" name="senha"  minlength="8" maxlength="10" required><br>
+                      <input type="password" name="senha"  minlength="8" maxlength="10" placeholder="Minimo 8 digitos" required><br>
                       <label for="senha" >Confirmação Senha</label><br>
-                      <input type="password"  name="senhaConfirma" minlength="8" maxlength="10"required><br><br>
+                      <input type="password"  name="senhaConfirma" minlength="8" maxlength="10"   placeholder="Minimo 8 digitos"required><br><br>
                       <input type="submit"  value="Cadastrar-se" class="btn-primary p10lr" style="margin-bottom: 10px;">
-                      <input type="button" value="Voltar ao login" class=" btn-primary p10lr" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">
+                      <input type="button"  value="Voltar ao login" class=" btn-primary p10lr" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">
                       
                   </form>
               </div>
@@ -209,6 +209,7 @@
               </ul>
             </footer>
       </div> 
+      
 @endsection
 
 @push('scripts')
@@ -217,6 +218,41 @@
   <script> 
     document.getElementById("tutorNav").style.display = "block";
     document.getElementById("ocorrenciaNav").style.display = "block";
+
+  </script>
+ @endif
+ @if(isset($_GET['erro']) && $_GET['erro']== 'usuario'))
+ <script> 
+    window.alert('Usuario ou email ja cadastrado! Tente novamente.');
+
+    document.getElementById("loginNav").click()
+
+      document.getElementById("Btncadastrar").click();
+    
+
+
+
+
+  </script>
+  @elseif(isset($_GET['erro']) && $_GET['erro']== 'senha')
+  <script> 
+    window.alert('Senhas não coincidem.');
+
+    document.getElementById("loginNav").click();
+
+      document.getElementById("Btncadastrar").click();
+  
+
+    
+
+
+  </script>
+  @elseif(isset($_GET['erro']) && $_GET['erro']== 'invalido')
+  <script> 
+    window.alert('Usuario ou senha invalidos!');
+
+    document.getElementById("loginNav").click();
+     
   </script>
  @endif
  @endpush

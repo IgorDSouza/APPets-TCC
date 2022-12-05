@@ -155,6 +155,7 @@
       <ul class="nav">
         <li class="nav-item"><a href="/" class="nav-link px-2 ">Home</a></li>
         <li class="nav-item"><a href="/ocorrencia/conteudo" class="nav-link px-2 ">Principais Ocorrências</a></li>
+        <li class="nav-item"><a data-bs-toggle="modal" href="#exampleModalToggle" role="button" class="nav-link px-2">Login</a></li>
         <li class="nav-item"><a href="#" class="nav-link px-2">Sobre</a></li>
       </ul>
     </footer>
@@ -193,21 +194,21 @@
                   <form method="POST" action="/addInfo"  enctype="multipart/form-data">
                     @csrf
                     <label for="nome">Nome</label>
-                      <input type="text" name="nome" required> 
+                      <input type="text" name="nome" > 
                       <label for="nome">Pais</label>
-                      <input type="text" name="pais" required>
+                      <input type="text" name="pais" >
                       <label for="nome">Estado</label>
-                      <input type="text" name="estado" required>
+                      <input type="text" name="estado" >
                       <label for="nome">Cidade</label>
-                      <input type="text" name="cidade" required>
+                      <input type="text" name="cidade" >
                       <label for="nome">Bairro</label>
-                      <input type="text" name="bairro" required>
+                      <input type="text" name="bairro" >
                       <label for="nome">Rua</label>
-                      <input type="text" name="rua" required>
+                      <input type="text" name="rua" >
                       <label for="nome">Numero</label>
-                      <input type="text" name="numero" required>
+                      <input type="text" name="numero" >
                       <label for="nome">Complemento</label>
-                      <input type="text" name="complemento" required>
+                      <input type="text" name="complemento" >
                       <input type="submit" value="Salvar" class=" btn-primary p10lr">
 
                   </form>
