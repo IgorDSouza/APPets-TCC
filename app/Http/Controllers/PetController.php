@@ -208,8 +208,8 @@ $pet->altura = $request->altura;
 $pet->comprimento = $request->comprimento;
 $pet->peso = $request->peso;
 
-
 if($request->hasFile('foto') && $request->file('foto')->isValid()){
+   
 
     $requestImage= $request->foto;
 
@@ -221,6 +221,7 @@ if($request->hasFile('foto') && $request->file('foto')->isValid()){
     
     $pet->foto = $imageName;
 }
+
 
 $pet->save();
 

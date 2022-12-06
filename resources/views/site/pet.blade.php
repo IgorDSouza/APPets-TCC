@@ -54,7 +54,7 @@
         </div>
       </nav>
     <div  style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
-    <div class="imgCard" style="background-image: url('/imgUsuario/pets/{{$pet->foto}}') "></div>
+    <div class="imgCard" style="background-image: url('../../imgUsuario/pets/{{$pet->foto}}') "></div>
 
         <div>         
             <H1 >{{ $pet->nome }}</H1>
