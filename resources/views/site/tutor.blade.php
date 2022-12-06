@@ -49,7 +49,7 @@
         </div>
       </nav>
     <div class="tutorInfo" id=#inicio >
-        <img class="circleImg" src="../imgUsuario/usuarios/@if(session('foto') == null){{"usuariopadrao.png"}}@else{{session('foto')}} @endif" alt="IMAGEM TUTOR">
+    <div class="imgCard" style="background-image: url('../imgUsuario/usuarios/@if(session('foto') == null){{"usuariopadrao.png"}}@else{{session('foto')}} @endif') "></div>
 
         <div>
         
@@ -75,7 +75,7 @@
         <div class="card">
        
        
-           <a href="/pet/{{$pet->id}}/remedio"><div class="imgCard"><img src="../imgUsuario/pets/{{$pet->foto}}"  alt="Imagem do pet"  > </div> 
+           <a href="/pet/{{$pet->id}}/remedio" class="cardpet"><div class="imgCard " style="background-image: url('../imgUsuario/pets/{{$pet->foto}}') "> </div> 
           {{$pet->nome}}</a>
           <div><a class="ocorrenciaDelButton mb-4" href="/{{$pet->id}}/deletePet" style=" color: #dc3545; cursor: pointer; font-size:18px"><i class="fa-solid fa-trash"></i></a>
 

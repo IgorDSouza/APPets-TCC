@@ -53,8 +53,9 @@
           </div>
         </div>
       </nav>
-    <div  style="text-align: center;">
-        <img class="circleImg" src="/imgUsuario/pets/{{$pet->foto}}" alt="IMAGEM PET">
+    <div  style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+    <div class="imgCard" style="background-image: url('../../imgUsuario/pets/{{$pet->foto}}') "></div>
+
         <div>         
             <H1 >{{ $pet->nome }}</H1>
         </div>

@@ -2,7 +2,7 @@
     .cards{
       display: flex;
       margin: 2rem;
-       justify-content: space-around;
+       justify-content: center;
        flex-wrap: wrap;
     }
     .card{
@@ -30,12 +30,15 @@
       width: 200px;
       
   }
-    .card a img{
-      border-radius: 300px;
-      padding: 15px 0px;
-      border: 1px black solid;
-      width: 200px; 
-      background-color: white;
-    }
 
+    .imgCard{
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 200px;
+      height: 200px;
+      border-radius: 100%;
+      border: 1px solid black;
+      background-position: center;
+  
+  }
     
