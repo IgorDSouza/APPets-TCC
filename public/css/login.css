@@ -25,7 +25,11 @@ div#form img{
     margin: 10px;
 }
 
-
+.permissao-field{
+    border-radius: 10px;
+    padding: 6px;
+    border: 1px solid black;
+}
 
 
 

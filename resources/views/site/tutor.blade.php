@@ -19,7 +19,7 @@
 
     <nav class="navbar navbar-expand-lg sticky-top "> 
         <div class="container-fluid">
-          <a class="navbar-brand" href='' style="color: rgb(45, 206, 80);
+          <a class="navbar-brand" href='{{route('site.home')}}' style="color: rgb(45, 206, 80);
           ;"> <img style="width: 50px;" src="{{URL::asset('imgHome/iconLogin.png')}}" alt="icone appets"> Appets</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

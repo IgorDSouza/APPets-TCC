@@ -42,6 +42,9 @@
           <li id="ocorrenciaNav" class="nav-item">
             <a class="nav-link"  href="{{route('ocorrecia.conteudos')}}">Ocorrências</a>
           </li>
+          <li id="cadAdmin" class="nav-item">
+            <a class="nav-link" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Cadastrar Administrador</a>
+          </li>
         </ul>
         <a style="width: 121.797px;"> </a>
 
@@ -129,7 +132,7 @@
       <div class="modal-body">
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
-      <div id="form"> 
+      <div id="form" class="formCad"> 
                   <img src="imgHome/iconLogin.png" alt ="icone appets">
                   <form method="post" action='/store'>
                   @csrf
@@ -137,6 +140,12 @@
                       <input type="email" name="email" placeholder="user@email.com"  required><br>
                       <label for="usuario"> Usuário </label><br>
                       <input type="text" name="usuario" placeholder="usuario" required><br>
+                      <div id="cadAdminForm">
+                        <label for="permissao">Permissão</label><br>
+                        <select name="permissao" class="permissao-field w-100">
+                          <option value="a">Administrador</option>
+                        </select><br>
+                      </div>
                       <label for="senha" >Senha</label><br>
                       <input type="password" name="senha"  minlength="8" maxlength="10" placeholder="Minimo 8 digitos" required><br>
                       <label for="senha" >Confirmação Senha</label><br>
@@ -174,12 +183,24 @@
 
 @push('scripts')
 @if(session('tutor')!=null && session('tutor')!='' )                  
-  <script> document.getElementById("loginNav").style.display = "none";</script>
   <script> 
+    document.getElementById("loginNav").style.display = "none";
     document.getElementById("tutorNav").style.display = "block";
     document.getElementById("ocorrenciaNav").style.display = "block";
-
   </script>
+  @if (session("permissao") == "a")
+      <script>
+        document.getElementById("cadAdmin").style.display = "block";
+        document.getElementById("cadAdminForm").style.display = "block";
+      </script>   
+  @endif
+  @else{
+    <script>
+      const parentForm = document.getElementsByClassName("formCad");
+      const permissao = document.getElementById("cadAdminForm");
+      permissao.remove();
+    </script>
+  } 
  @endif
  @if(isset($_GET['erro']) && $_GET['erro']== 'usuario'))
  <script> 

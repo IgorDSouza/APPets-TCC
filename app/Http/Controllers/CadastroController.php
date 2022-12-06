@@ -39,6 +39,7 @@ class CadastroController extends Controller
                 $usuario->login = $request->usuario;
                 $usuario->email = $request->email;
                 $usuario->senha = md5($request->senha);
+                $usuario->permissao = $request->permissao;
                 $usuario->save();
 
                 $retorno = redirect()->route('site.home');
