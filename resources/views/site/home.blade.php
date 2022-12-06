@@ -173,7 +173,8 @@
                   <img src="imgHome/iconLogin.png" alt ="icone appets">
                   <form method="post" action='/store'>
                   @csrf
-                  <label for="usuario"> Email</label><br>
+        
+                      <label for="usuario"> Email</label><br>
                       <input type="email" name="email" placeholder="user@email.com"  required><br>
                       <label for="usuario"> Usuário </label><br>
                       <input type="text" name="usuario" placeholder="usuario" required><br>
