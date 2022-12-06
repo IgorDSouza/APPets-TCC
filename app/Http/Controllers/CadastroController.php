@@ -23,7 +23,7 @@ class CadastroController extends Controller
 
         $validacao1 = DB::table('usuarios')->where('login', $request->usuario )->first();
 
-        $validacao1 = DB::table('usuarios')->where('email', $request->email )->first();
+        $validacao2 = DB::table('usuarios')->where('email', $request->email )->first();
 
 
         if($validacao1 != null || $validacao2 != null){

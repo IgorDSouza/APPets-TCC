@@ -14,5 +14,6 @@ class Ocorrencia extends Model
         'conteudo_solucao',
         'titulo_ocorrencia',
         'usuario_id',
+        'foto_ocorrencia',
     ];
 }

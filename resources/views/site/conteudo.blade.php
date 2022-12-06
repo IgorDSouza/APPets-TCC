@@ -10,15 +10,22 @@
     <link rel="stylesheet" href="{{URL::asset('css/cardsConteudo.css')}}">
     <link rel="stylesheet" href="{{URL::asset('css/modal.css')}}">
     <link rel="stylesheet" href="{{URL::asset('css/conteudo.css')}}">
-  <!--bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+      .imgCard{
+          background-repeat: no-repeat;
+          background-size: cover;
+          width: 200px;
+          height: 200px;
+          border-radius: 100%;
+          border: 1px solid black;
+      }
+  </style>
 @endpush
 @section('content')
   <nav class="navbar navbar-expand-lg sticky-top "> 
     <div class="container-fluid">
       <a class="navbar-brand" href="/" style="color: rgb(45, 206, 80);
-      ;"> <img style="width: 50px;" src="imgHome/iconLogin.png" alt="icone appets"> Appets</a>
+      ;"> <img style="width: 50px;" src="../imgHome/iconLogin.png" alt="icone appets"> Appets</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -28,24 +35,15 @@
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/">Inicio</a>
           </li>
+          <!--DROPDOWN OCORRÊNCIAS-->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Ocorrências
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" data-bs-toggle="modal" href="#Envenenamento" role="button">Envenenamento</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal"  role="button"href="#Queda">Queda</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal"  role="button"href="#Briga">Briga</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal"  role="button"href="#Afogamento">Afogamento</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal"  role="button"href="#Asfixia">Asfixia</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal"  role="button"href="#Atropelamento">Atropelamento</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal"  role="button"href="#Queimadura">Queimadura</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal"  role="button"href="#Choque">Choque Elétrico</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal"  role="button"href="#Vomito">Vomito e Diarréia</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal"  role="button"href="#Picada">Picada de Insetos</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal"  role="button"href="#Intoxicação">Intoxicação Externa</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal"  role="button"href="#Cortes">Cortes Profundos</a></li>
-
+              @foreach ($ocorrencias as $ocorrencia)
+                <li><a class="dropdown-item" data-bs-toggle="modal" href="#ocorrencia{{$ocorrencia->id}}" role="button">{{$ocorrencia->titulo_ocorrencia}}</a></li>    
+              @endforeach
             </ul>
           </li>
         </ul>
@@ -82,8 +80,8 @@
             <a class="ocorrenciaDelButton mb-4" data-bs-toggle="modal" data-bs-target="#del{{$ocorrencia->id}}" title="Deletar {{$ocorrencia->titulo_ocorrencia}}" style="display: none; color: #dc3545; cursor: pointer;"><i class="fa-solid fa-trash"></i></a>
 
             <a data-bs-toggle="modal"  role="button" href="{{'#ocorrencia'.$ocorrencia->id}}" >
-              <div class="imgCard">
-                <img class="d-block m-l-r borda " src="{{URL::asset('imgConteudo/envenenamento.png')}}"  alt="Imagem de capa do card" > 
+              <div class="imgCard" style="background-image: url('{{URL::asset('imgOcorrencias/ocorrencias/'.$ocorrencia->foto_ocorrencia)}}') ">
+                {{-- <img class="d-block m-l-r borda " src=""  alt="Imagem de capa do card" >  --}}
               </div> 
             {{$ocorrencia->titulo_ocorrencia}} 
           </a>

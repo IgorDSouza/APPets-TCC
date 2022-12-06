@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('tipo_ocorrencia');
             $table->longText('conteudo_solucao');
             $table->string('titulo_ocorrencia');
+            $table->string('foto_ocorrencia');
             $table->timestamps();
         });    }
 

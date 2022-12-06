@@ -2,9 +2,17 @@
 @section('content')
     <div class="container">
         <h1>Preencha os campos abaixo para criar uma nova ocorrência</h1>
-        <form action="{{route('ocorrencia.store')}}" method="post">
+        <form action="{{route('ocorrencia.store')}}" enctype="multipart/form-data" method="post">
             @csrf
-            <div class="row">
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <label for="foto_ocorrencia">Foto da ocorrência: </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="file" name="foto_ocorrencia" required>
+                </div>
+            </div>
+            <div class="row mt-3">
                 <div class="col-md-2">
                     <label for="titulo_ocorrencia">Título da ocorrência: </label>
                 </div>

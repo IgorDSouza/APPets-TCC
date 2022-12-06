@@ -37,7 +37,7 @@
                     <a class="nav-link" id='loginNav' data-bs-toggle="modal" href="#exampleModalToggle" role="button">Iniciar sessão</a>
                   </li>
                   <li id="tutorNav" class="nav-item">
-                    <a class="nav-link"  href="{{route('site.tutor',session('id') ) }}" >Area do Tutor</a>
+                    <a class="nav-link"  href="{{route('site.tutor',session('id') ) }}" >Área do Tutor</a>
                   </li>
                   <li id="ocorrenciaNav" class="nav-item">
                     <a class="nav-link"  href="{{route('ocorrecia.conteudos')}}">Ocorrências</a>
@@ -72,38 +72,7 @@
 </section>
         
         <section class="cards">
-          <!-- @include('site.principaisOcorrencias')
-             {{-- <div class="card card-1">
-
-              
-                <a href = "conteudo.php?nome=envenenamentoCard" ><div class="imgCard"><img class="d-block m-l-r borda " src="imgHome/envenenamento.png"  alt="Imagem de capa do card" > </div> 
-                Envenenamento </a>
-       
-            
-             </div>
-             <div class="card card-2">
-              
-              <a href = "conteudo.php?nome=quedaCard" > <div class="imgCard"><img class="d-block m-l-r borda" src="imgHome/queda.png"  alt="Imagem de capa do card"></div>
-                Queda</a>
-       
-       
-             </div>
-             <div class="card card-3">
-              
-              <a href = "conteudo.php?nome=brigaCard"> <div class="imgCard"><img class="d-block m-l-r borda" src="imgHome/briga.png"  alt="Imagem de capa do card"></div>
-                Briga</a>
-       
-             </div>
-             <div class="card card-4">
-              
-                <a href = "conteudo.php?nome=afogamentoCard" ><div class="imgCard"> <img class="d-block m-l-r borda " src="imgHome/afogamento.png"  alt="Imagem de capa do card" > </div>Afogamento</a>
-       
-             </div>
-             <div class="card card-5">
-              
-              <a href = "conteudo.php?nome=asfixiaCard"><div class="imgCard"> <img class="d-block m-l-r borda" src="imgHome/asfixia.png"  alt="Imagem de capa do card"></div>
-                Asfixia</a>
-             </div> --}} -->
+          @include('site.principaisOcorrencias')
             </section>  
        </div>
        
@@ -193,7 +162,7 @@
 </div>
 
           <!-- Footer -->
-          <div>
+          <div class="">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top bgblury">
               <p class="col-md-4 mb-0">© 2022 Appets</p>
           

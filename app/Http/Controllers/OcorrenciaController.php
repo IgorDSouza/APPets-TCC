@@ -37,11 +37,22 @@ class OcorrenciaController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->hasFile('foto_ocorrencia') && $request->file('foto_ocorrencia')->isValid()){
+
+            $requestImage= $request->foto_ocorrencia;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extension;
+
+            $requestImage->move(public_path("imgOcorrencias/ocorrencias"),$imageName);
+        }
         Ocorrencia::create([
             'usuario_id' => session('id'),
             'titulo_ocorrencia' => $request['titulo_ocorrencia'],
             'conteudo_solucao' => $request['conteudo_solucao'],
-            'tipo_ocorrencia' => $request['tipo_ocorrencia']
+            'tipo_ocorrencia' => $request['tipo_ocorrencia'],
+            'foto_ocorrencia' => $imageName
         ]);
 
         return redirect()->route('ocorrencia.index');
@@ -82,7 +93,23 @@ class OcorrenciaController extends Controller
         //atualiza os dados de uma linha no meu banco
 
         $ocorrencia = Ocorrencia::find($id);
-        $ocorrencia->fill($request->toArray());
+        if($request->hasFile('foto_ocorrencia') && $request->file('foto_ocorrencia')->isValid()){
+
+            $requestImage= $request->foto_ocorrencia;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extension;
+
+            $requestImage->move(public_path("imgOcorrencias/ocorrencias"),$imageName);
+        }
+        $ocorrencia->fill([
+            'usuario_id' => session('id'),
+            'titulo_ocorrencia' => $request['titulo_ocorrencia'],
+            'conteudo_solucao' => $request['conteudo_solucao'],
+            'tipo_ocorrencia' => $request['tipo_ocorrencia'],
+            'foto_ocorrencia' => $imageName
+        ]);
         $ocorrencia->save();
 
         return redirect()->route('ocorrecia.conteudos');
