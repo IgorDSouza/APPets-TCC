@@ -73,7 +73,16 @@ a.nav-link:hover{
     position: relative;
 
 }
+.imgCard{
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    border: 1px solid black;
+    background-position: center;
 
+}
 
 @media (min-width:260px) and (max-width:300px){
    .links{

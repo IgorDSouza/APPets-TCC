@@ -2,8 +2,7 @@
     @foreach ($ocorrencias as $ocorrencia)
     <div class="card card-1">
         <a href = "conteudo.php?nome=envenenamentoCard" >
-            <div class="imgCard">
-                <img class="d-block m-l-r borda " src="imgHome/envenenamento.png"  alt="Imagem de capa do card" >
+            <div class="imgCard" style="background-image: url('/imgUsuario/pets/{{$ocorrencia->foto_ocorrencia}}') ">
              </div> 
         {{$ocorrencia->titulo_ocorrencia}} 
         </a>
