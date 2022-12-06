@@ -9,7 +9,7 @@
                     <label for="foto_ocorrencia">Foto da ocorrência: </label>
                 </div>
                 <div class="col-md-8">
-                    <input type="file" name="foto_ocorrencia" required>
+                    <input type="file" name="foto_ocorrencia" accept="image/png, image/jpeg" required>
                 </div>
             </div>
             <div class="row mt-3">
