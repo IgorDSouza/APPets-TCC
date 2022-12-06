@@ -102,14 +102,21 @@ class OcorrenciaController extends Controller
             $imageName = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extension;
 
             $requestImage->move(public_path("imgOcorrencias/ocorrencias"),$imageName);
+            $ocorrencia->fill([
+                'usuario_id' => session('id'),
+                'titulo_ocorrencia' => $request['titulo_ocorrencia'],
+                'conteudo_solucao' => $request['conteudo_solucao'],
+                'tipo_ocorrencia' => $request['tipo_ocorrencia'],
+                'foto_ocorrencia' => $imageName
+            ]);
+        }else{
+            $ocorrencia->fill([
+                'usuario_id' => session('id'),
+                'titulo_ocorrencia' => $request['titulo_ocorrencia'],
+                'conteudo_solucao' => $request['conteudo_solucao'],
+                'tipo_ocorrencia' => $request['tipo_ocorrencia'],
+            ]);
         }
-        $ocorrencia->fill([
-            'usuario_id' => session('id'),
-            'titulo_ocorrencia' => $request['titulo_ocorrencia'],
-            'conteudo_solucao' => $request['conteudo_solucao'],
-            'tipo_ocorrencia' => $request['tipo_ocorrencia'],
-            'foto_ocorrencia' => $imageName
-        ]);
         $ocorrencia->save();
 
         return redirect()->route('ocorrecia.conteudos');

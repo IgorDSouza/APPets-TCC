@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <input type="file" name="foto_ocorrencia" required>
+                    <input type="file" name="foto_ocorrencia" accept="image/png, image/jpeg">
                 </div>
             </div>
             <div class="row mt-3">
