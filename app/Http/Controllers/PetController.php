@@ -215,7 +215,7 @@ if($request->hasFile('foto') && $request->file('foto')->isValid()){
 
     $extension = $requestImage->extension();
 
-    $imageName = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extension;
+    $imageName = $pet->foto;
 
     $requestImage->move(public_path("imgUsuario/pets"),$imageName);
     

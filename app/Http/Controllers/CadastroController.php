@@ -90,8 +90,14 @@ class CadastroController extends Controller
 
             $extension = $requestImage->extension();
 
-            $imageName = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extension;
+            if($usuario->foto !== null){
+                $imageName = $usuario->foto;
 
+            }else{
+
+                $imageName = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extension;
+
+            }
 
             $requestImage->move(public_path("imgUsuario/usuarios"),$imageName);
             
