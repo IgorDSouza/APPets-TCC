@@ -1,62 +1,113 @@
 @extends('layout.default')
-<style>
-    .imgCard{
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 200px;
-        height: 200px;
-        border-radius: 100%;
-        border: 1px solid black;
-    }
-</style>
+@push('links')
+    <style>
+        .imgCard{
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 200px;
+            height: 200px;
+            border-radius: 100%;
+            border: 1px solid black;
+        }
+
+        .bg-create{
+            background-image: url(/imgHome/bg3-3.jpg) !important;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .bg-filter{
+            backdrop-filter: brightness(0.8);   
+            width: 100%;
+            height: 100vh;
+        }
+
+        .form{
+            background-color: #447e605c;
+            border: 1px solid black;
+            border-radius: 10px;
+
+        }
+        .form-title{
+            font-weight: bold;
+            font-size: 56px;
+            text-align: center;
+            -webkit-text-stroke-width: 0.5px;
+            -webkit-text-stroke-color: black;
+            font-family: 'Lilita One', cursive !important;
+            color: greenyellow;
+        }
+        .row-min-size{
+            width: 450px;
+            
+        }
+
+        .inputs{
+            border-radius: 10px;
+            padding: 8px;
+            border: 1px solid black;
+        }
+        .mt-80{
+            margin-top: 80px;
+        }
+    </style>  
+@endpush
+
 @section('content')
-    <div class="container">
-        <h1>Preencha os campos abaixo para criar uma nova ocorrência</h1>
-        <form action="{{route('ocorrencia.update',$ocorrencia->id)}}" enctype="multipart/form-data" method="post">
-            @csrf
-            <div class="row mt-3">
-                <div class="col-md-2">
-                    <label for="foto_ocorrencia">Foto da ocorrência: </label>
-                </div>
-                <div class="col-md-4">
-                    <div class="imgCard" style="background-image: url('../../imgOcorrencias/ocorrencias/{{$ocorrencia->foto_ocorrencia}}') ">
-                        {{-- <img class="d-block m-l-r borda " src="/imgOcorrencias/ocorrencias/{{$ocorrencia->foto_ocorrencia}}"  alt="Imagem de capa do card" >  --}}
+<div class="bg-create">
+        
+    <div class="bg-filter d-flex justify-content-center flex-column">
+        <h1 class="mt-80 text-center form-title">Editar a ocorrência: {{$ocorrencia->titulo_ocorrencia}}</h1>
+        <div class="form m-auto w-50">
+            
+            <form action="{{route('ocorrencia.update',$ocorrencia->id)}}" enctype="multipart/form-data" method="post" class="p-4">
+                @csrf
+                <div class="row my-3 justify-content-center">
+                    <div class="col-md-11 d-flex justify-content-center">
+                        <div class="imgCard" style="background-image: url('../../imgOcorrencias/ocorrencias/{{$ocorrencia->foto_ocorrencia}}') ">
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <input type="file" name="foto_ocorrencia" accept="image/png, image/jpeg">
+                <div class="row mt-3 justify-content-center">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <label for="foto_ocorrencia" class="fw-bold">Foto da ocorrência: </label>
+                    </div>
+                    
+                    <div class="col-md-8">
+                        <input type="file" name="foto_ocorrencia" accept="image/png, image/jpeg" required>
+                    </div>
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-2">
-                    <label for="titulo_ocorrencia">Título da ocorrência: </label>
+                <div class="row mt-3 justify-content-center">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <label for="titulo_ocorrencia" class="fw-bold">Título da ocorrência: </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" name="titulo_ocorrencia" class="w-100 inputs" value="{{$ocorrencia->titulo_ocorrencia}}">
+                    </div>
                 </div>
-                <div class="col-md-8">
-                    <input type="text" name="titulo_ocorrencia" class="w-50" value="{{$ocorrencia->titulo_ocorrencia}}">
+                <div class="row my-3 justify-content-center">
+                    <div class="col-md-3">
+                        <label for="conteudo_solucao" class="fw-bold">Conteúdo da ocorrência: </label>
+                    </div>
+                    <div class="col-md-8 justify-content-center">
+                        <textarea name="conteudo_solucao" id="" cols="30" rows="5" class="w-100 inputs">{{$ocorrencia->conteudo_solucao}}</textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="row my-3">
-                <div class="col-md-2">
-                    <label for="conteudo_solucao">Conteúdo da ocorrência: </label>
+                <div class="row justify-content-center">
+                    <div class="col-md-3 d-flex align-items-center">
+                        <label for="tipo_ocorrencia" class="fw-bold">Tipo da ocorrência: </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" name="tipo_ocorrencia" class="w-100 inputs" value="{{$ocorrencia->tipo_ocorrencia}}">
+                    </div>
                 </div>
-                <div class="col-md-8">
-                    <textarea name="conteudo_solucao" id="" cols="30" rows="5" class="w-50">{{$ocorrencia->conteudo_solucao}}</textarea>
+                <div class="row my-3 justify-content-center">
+                    <div class="col-md-11 d-flex justify-content-end">
+                        <input type="submit" class="btn btn-success fw-bold" value="Salvar" style="width: 250px;">
+                    </div>
+        
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <label for="tipo_ocorrencia">Tipo da ocorrência: </label>
-                </div>
-                <div class="col-md-8">
-                    <input type="text" name="tipo_ocorrencia" class="w-50" value="{{$ocorrencia->tipo_ocorrencia}}">
-                </div>
-            </div>
-            <div class="row my-3">
-                <div class="col-md-6 d-flex justify-content-end pe-0">
-                    <input type="submit" class="btn btn-outline-success" value="Salvar">
-                </div>
-                
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
+</div>
 @endsection
