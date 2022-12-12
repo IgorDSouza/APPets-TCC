@@ -71,7 +71,7 @@ class CadastroController extends Controller
         $usuario->rua = $request->rua;
         $usuario->save();
 
-
+        session(['cidade'=>$usuario->cidade]);
 
 
         return redirect()->route('site.tutor',session('id'));

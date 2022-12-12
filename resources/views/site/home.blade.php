@@ -79,10 +79,9 @@
         <div class="titMaps">
           <h1 class="margin-30-top-bottom txt-center pteb-20 ">Clinicas Veterinárias na região</h1>
         </div>
-      
         <div class=" flex-column">
           <div class="d-flex justify-content-center">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d29422.914637068807!2d-47.25228895145061!3d-22.807490504975576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sveterinarios%20na%20regiao!5e0!3m2!1spt-BR!2sbr!4v1657055827086!5m2!1spt-BR!2sbr" width="700" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d14705.93503694746!2d-47.2240046020657!3d-22.85858142116016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sveterinarios%20  @if(session('cidade') == null) hortolandia @else {{session('cidade')}} @endif !5e0!3m2!1spt-BR!2sbr!4v1670545997447!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </section>
@@ -237,6 +236,7 @@
      
   </script>
  @endif
+
  @endpush
 </body>
 </html>

@@ -1,8 +1,8 @@
 <section class="cards">
     @foreach ($ocorrencias as $ocorrencia)
     <div class="card card-1">
-        <a href = "conteudo.php?nome=envenenamentoCard" >
-            <div class="imgCard" style="background-image: url('/imgUsuario/pets/{{$ocorrencia->foto_ocorrencia}}') ">
+        <a href = "ocorrencia/conteudo?id={{$ocorrencia->id}}" >
+            <div class="imgCard" style="background-image: url('/imgOcorrencias/ocorrencias/{{$ocorrencia->foto_ocorrencia}}') ">
              </div> 
         {{$ocorrencia->titulo_ocorrencia}} 
         </a>

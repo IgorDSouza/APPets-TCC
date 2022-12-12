@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use File;
 
 use App\Models\Ocorrencia;
 use Illuminate\Http\Request;
@@ -68,6 +69,11 @@ class PetController extends Controller
 
     public function deletePet(Request $request, $id){
         $pet = Pet::find($id);
+        if($pet->foto != null){
+            
+             File::delete("imgUsuario/pets/$pet->foto");
+        }
+       
 
         $pet->delete();
 

@@ -72,7 +72,7 @@
             <!-- Botão para deletar uma ocorrência -->
             <a class="ocorrenciaDelButton mb-4" data-bs-toggle="modal" data-bs-target="#del{{$ocorrencia->id}}" title="Deletar {{$ocorrencia->titulo_ocorrencia}}" style="display: none; color: #dc3545; cursor: pointer;"><i class="fa-solid fa-trash"></i></a>
 
-            <a data-bs-toggle="modal"  role="button" href="{{'#ocorrencia'.$ocorrencia->id}}" >
+            <a data-bs-toggle="modal"  role="button" href="{{'#ocorrencia'.$ocorrencia->id}}"  id="{{$ocorrencia->id}}">
               <div class="imgCard" style="background-image: url('{{URL::asset('imgOcorrencias/ocorrencias/'.$ocorrencia->foto_ocorrencia)}}') ">
                 {{-- <img class="d-block m-l-r borda " src=""  alt="Imagem de capa do card" >  --}}
               </div> 
@@ -200,5 +200,10 @@
 
         
       </script>
+      <script>
+        var id = @isset($_GET['id'])"{{ $_GET['id'] }}"@endisset 
+        document.getElementById(id).click();
+
+    </script>
      @endif
      @endpush
